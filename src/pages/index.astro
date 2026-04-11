@@ -1,0 +1,1252 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: 'Lead Triage',
+    subtitleKey: 'proj.leadtriage.sub',
+    descriptionKey: 'proj.leadtriage.desc',
+    tags: ['Python', 'FastAPI', 'OpenAI API', 'SQLite', 'Webhooks'],
+    image: 'leadtriage',
+    liveUrl: '/demos/lead-triage/',
+    codeUrl: 'https://github.com/Mark1Anthony/lead-triage',
+    featured: true,
+  },
+  {
+    title: 'Websites for Local Businesses',
+    subtitleKey: 'proj.website.sub',
+    descriptionKey: 'proj.website.desc',
+    tags: ['Astro', 'Tailwind', 'HTML/CSS', 'Responsive'],
+    image: 'website',
+    liveUrl: '/demos/website/',
+    codeUrl: null,
+    featured: true,
+  },
+  {
+    title: 'Automation Pipeline',
+    subtitleKey: 'proj.automation.sub',
+    descriptionKey: 'proj.automation.desc',
+    tags: ['FastAPI', 'OpenAI', 'Telegram Bot', 'Webhooks', 'n8n'],
+    image: 'automation',
+    liveUrl: '/demos/automation/',
+    codeUrl: null,
+    featured: true,
+  },
+  {
+    title: 'Mobile App Prototype',
+    subtitleKey: 'proj.mobile.sub',
+    descriptionKey: 'proj.mobile.desc',
+    tags: ['Mobile', 'UX Prototype', 'Click-through'],
+    image: 'mobile',
+    liveUrl: '/demos/mobile/',
+    codeUrl: null,
+    featured: false,
+  },
+  {
+    title: 'Drift',
+    subtitleKey: 'proj.drift.sub',
+    descriptionKey: 'proj.drift.desc',
+    tags: ['Canvas', 'TypeScript', 'Perlin Noise', 'Vector Math'],
+    image: 'drift',
+    liveUrl: '/drift/',
+    codeUrl: null,
+    featured: false,
+  },
+  {
+    title: 'Book Scraper',
+    subtitleKey: 'proj.scraper.sub',
+    descriptionKey: 'proj.scraper.desc',
+    tags: ['Python', 'FastAPI', 'BeautifulSoup', 'SQLite', 'Jinja2'],
+    image: 'scraper',
+    liveUrl: '/demos/scraper/',
+    codeUrl: 'https://github.com/Mark1Anthony/Python-Webscraper',
+    featured: false,
+  },
+  {
+    title: 'MyShell',
+    subtitleKey: 'proj.shell.sub',
+    descriptionKey: 'proj.shell.desc',
+    tags: ['C++17', 'Win32 API', 'CMake', 'Systems'],
+    image: 'shell',
+    liveUrl: '/demos/shell/',
+    codeUrl: 'https://github.com/Mark1Anthony/Shell',
+    featured: false,
+  },
+];
+
+const skills = {
+  'AI & Automation': ['Claude Code', 'OpenAI API', 'GPT Integration', 'Prompt Engineering', 'LLM Workflows', 'n8n', 'Process Automation'],
+  'Languages': ['Python', 'JavaScript', 'PHP', 'C++', 'C#', 'TypeScript', 'SQL', 'HTML/CSS'],
+  'Backend & APIs': ['REST APIs', 'JSON', 'Webhooks', 'FastAPI', 'Node.js', 'MySQL', 'SQLite', 'PostgreSQL'],
+  'Frontend': ['Astro', 'Tailwind', 'React (basics)', 'Canvas API', 'Responsive Design'],
+  'DevOps & Tools': ['Git', 'GitHub', 'Docker', 'Linux', 'CMake', 'Netlify', 'VS Code', 'Jira'],
+};
+
+const capabilities = [
+  {
+    icon: 'stack',
+    title: 'capabilities.stack.title',
+    desc: 'capabilities.stack.desc',
+  },
+  {
+    icon: 'api',
+    title: 'capabilities.api.title',
+    desc: 'capabilities.api.desc',
+  },
+  {
+    icon: 'ai',
+    title: 'capabilities.ai.title',
+    desc: 'capabilities.ai.desc',
+  },
+  {
+    icon: 'db',
+    title: 'capabilities.db.title',
+    desc: 'capabilities.db.desc',
+  },
+  {
+    icon: 'systems',
+    title: 'capabilities.systems.title',
+    desc: 'capabilities.systems.desc',
+  },
+  {
+    icon: 'ux',
+    title: 'capabilities.ux.title',
+    desc: 'capabilities.ux.desc',
+  },
+];
+
+const stackCatKeys: Record<string, string> = {
+  'AI & Automation': 'stack.cat.ai',
+  'Languages': 'stack.cat.lang',
+  'Backend & APIs': 'stack.cat.backend',
+  'Frontend': 'stack.cat.frontend',
+  'DevOps & Tools': 'stack.cat.tools',
+};
+
+// ─── All translatable strings ───
+const t = {
+  en: {
+    'nav.about': 'About',
+    'nav.capabilities': 'Capabilities',
+    'nav.stack': 'Stack',
+    'nav.work': 'Work',
+    'nav.contact': 'Contact',
+    'nav.cta': "Let's talk",
+    'hero.label': 'Software Developer · AI Automation · Düsseldorf',
+    'hero.title.greeting': "Hi, I'm",
+    'hero.title.tagline1': 'I ship software',
+    'hero.title.tagline2': 'that works.',
+    'hero.subtitle': "Software Developer & AI Automation Specialist based in Düsseldorf. I build production-grade software, integrate AI systems, and automate the work that slows teams down.",
+    'hero.cta.work': 'View my work',
+    'hero.cta.contact': 'Get in touch',
+    'about.label': 'About',
+    'about.title1': 'Full-stack developer.',
+    'about.title2': 'AI-native by practice.',
+    'about.p1': "I'm a software developer and AI automation specialist — from C++ systems programming to Python automation and JavaScript web apps.",
+    'about.p2': "I build <strong class=\"text-ink-50\">production-grade software</strong> — CRM systems with REST APIs, automated workflows and database architecture that goes from concept to deployment independently.",
+    'about.p3': "I work daily with AI tools like <strong class=\"text-ink-50\">Claude Code</strong> and the <strong class=\"text-ink-50\">OpenAI API</strong>, building GPT-powered automations and integrating LLMs into real applications.",
+    'about.p4': "Before development, I spent three years in professional client communication — which means I don't just write code, I know what users are actually trying to do when they describe a problem.",
+    'about.available': 'Based in Düsseldorf. Available now.',
+    'cap.label': 'Capabilities',
+    'cap.title1': 'What I build.',
+    'cap.title2': 'What I solve.',
+    'capabilities.stack.title': 'Full-stack web apps',
+    'capabilities.stack.desc': 'End-to-end web applications in Python, JavaScript and PHP — from database schema to deployed UI.',
+    'capabilities.api.title': 'REST APIs & webhooks',
+    'capabilities.api.desc': 'Design and build HTTP APIs, JSON payloads, webhook integrations and external system plumbing.',
+    'capabilities.ai.title': 'AI automation & LLMs',
+    'capabilities.ai.desc': 'Integrate OpenAI and Claude into real workflows — classification, extraction, routing, summarisation.',
+    'capabilities.db.title': 'Database architecture',
+    'capabilities.db.desc': 'Schema design, complex SQL queries, SQLite to PostgreSQL, read/write-performance when it matters.',
+    'capabilities.systems.title': 'Systems programming',
+    'capabilities.systems.desc': 'C++17, CMake, Win32 API — when you need to touch the OS or understand what the bytes are doing.',
+    'capabilities.ux.title': 'UX-aware engineering',
+    'capabilities.ux.desc': "Years of customer-facing work before dev. I don't just ship features, I know what users actually want.",
+    'stack.label': 'Stack',
+    'stack.title1': 'The tools I use',
+    'stack.title2': 'to ship.',
+    'stack.cat.ai': 'AI & Automation',
+    'stack.cat.lang': 'Languages',
+    'stack.cat.backend': 'Backend & APIs',
+    'stack.cat.frontend': 'Frontend',
+    'stack.cat.tools': 'DevOps & Tools',
+    'work.label': 'Selected work',
+    'work.title1': "Things I've",
+    'work.title2': 'actually shipped.',
+    'work.featured': 'Featured',
+    'work.live': 'Live demo',
+    'work.code': 'View code',
+    'contact.label': 'Contact',
+    'contact.title1': 'Looking for a developer',
+    'contact.title2': 'who ships?',
+    'contact.subtitle': "Let's talk. Production work, freelance, a role to fill — my inbox is open.",
+    'footer.copy': '© 2026 Mark Amaechi',
+    'footer.note': 'Crafted with care.',
+    // Projects
+    'proj.leadtriage.sub': 'AI-powered lead qualification',
+    'proj.leadtriage.desc': "Production-style lead intake system: leads come in via form or webhook, GPT classifies them by priority and category, suggests the next action, and pushes them into a kanban. FastAPI + OpenAI + SQLite. Demo mode runs without an API key.",
+    'proj.drift.sub': 'Generative flow field',
+    'proj.drift.desc': 'A particle system where thousands of points follow a Perlin noise vector field, painting long glowing trails. Click to reshape the field, move the mouse to push particles around.',
+    'proj.website.sub': 'Service business websites',
+    'proj.website.desc': "Three real, deployed websites I built for service businesses — roofing, cleaning, premium consulting. Clean design, zero stock-photo vibes, mobile-first, built to actually convert. Click any of them to open the live version.",
+    'proj.automation.sub': 'Form → CRM → Phone ping',
+    'proj.automation.desc': "A full automation pipeline that takes a contact-form submission, runs it through GPT triage, sends an auto-reply, pushes it to the CRM, pings the owner on Telegram and blocks a calendar slot. Visible step-by-step in the browser — submit the form and watch it run.",
+    'proj.mobile.sub': 'Mobile app prototype',
+    'proj.mobile.desc': 'A clickable mobile app prototype showing onboarding, home, detail and profile flows. Rendered inside a phone frame, tap through the screens like a real app.',
+    'proj.scraper.sub': 'Scraper + FastAPI dashboard',
+    'proj.scraper.desc': 'Python scraper with a web dashboard on top. Live progress, searchable results, SQLite run history, one-click export to Excel/CSV/JSON. Locked to a single public training target — demo project, not a general-purpose tool.',
+    'proj.shell.sub': 'Command-line shell in C++',
+    'proj.shell.desc': 'A custom Windows shell written in C++17. Handles tokenization, built-in commands (cd, echo, help, exit) and falls back to the Win32 CreateProcess API for external programs. Try it in the interactive demo.',
+  },
+  de: {
+    'nav.about': 'Über mich',
+    'nav.capabilities': 'Fähigkeiten',
+    'nav.stack': 'Stack',
+    'nav.work': 'Projekte',
+    'nav.contact': 'Kontakt',
+    'nav.cta': 'Sprechen wir',
+    'hero.label': 'Softwareentwickler · AI-Automation · Düsseldorf',
+    'hero.title.greeting': 'Hi, ich bin',
+    'hero.title.tagline1': 'Ich liefere Software',
+    'hero.title.tagline2': 'die funktioniert.',
+    'hero.subtitle': 'Softwareentwickler & AI-Automation-Spezialist in Düsseldorf. Ich baue produktive Software, integriere KI-Systeme und automatisiere alles, was Teams aufhält.',
+    'hero.cta.work': 'Zu den Projekten',
+    'hero.cta.contact': 'Kontakt aufnehmen',
+    'about.label': 'Über mich',
+    'about.title1': 'Full-Stack-Entwickler.',
+    'about.title2': 'AI-native in der Praxis.',
+    'about.p1': 'Ich bin Softwareentwickler und AI-Automation-Spezialist — von C++ Systems Programming über Python-Automation bis hin zu JavaScript-Web-Apps.',
+    'about.p2': 'Ich baue <strong class="text-ink-50">produktive Software</strong> — CRM-Systeme mit REST-APIs, automatisierte Workflows und Datenbank-Architektur, eigenständig vom Konzept bis ins Deployment.',
+    'about.p3': 'Ich arbeite täglich mit AI-Tools wie <strong class="text-ink-50">Claude Code</strong> und der <strong class="text-ink-50">OpenAI API</strong>, baue GPT-gestützte Automationen und integriere LLMs in reale Anwendungen.',
+    'about.p4': 'Vor der Entwicklung war ich drei Jahre lang im direkten Kundenkontakt — das heißt, ich schreibe nicht nur Code, ich verstehe auch was Nutzer wirklich wollen, wenn sie ein Problem beschreiben.',
+    'about.available': 'Düsseldorf. Verfügbar ab sofort.',
+    'cap.label': 'Fähigkeiten',
+    'cap.title1': 'Was ich baue.',
+    'cap.title2': 'Was ich löse.',
+    'capabilities.stack.title': 'Full-Stack-Webapps',
+    'capabilities.stack.desc': 'End-to-End-Webanwendungen in Python, JavaScript und PHP — vom Datenbankschema bis zum deployten UI.',
+    'capabilities.api.title': 'REST-APIs & Webhooks',
+    'capabilities.api.desc': 'Design und Bau von HTTP-APIs, JSON-Payloads, Webhook-Integrationen und Anbindung externer Systeme.',
+    'capabilities.ai.title': 'AI-Automation & LLMs',
+    'capabilities.ai.desc': 'Integration von OpenAI und Claude in echte Workflows — Klassifikation, Extraktion, Routing, Zusammenfassung.',
+    'capabilities.db.title': 'Datenbank-Architektur',
+    'capabilities.db.desc': 'Schema-Design, komplexe SQL-Queries, von SQLite bis PostgreSQL — Performance wenn sie zählt.',
+    'capabilities.systems.title': 'Systems Programming',
+    'capabilities.systems.desc': 'C++17, CMake, Win32 API — wenn du an das OS ran musst oder verstehen willst was die Bytes machen.',
+    'capabilities.ux.title': 'UX-bewusstes Engineering',
+    'capabilities.ux.desc': 'Jahre im Kundenkontakt vor der Entwicklung. Ich shippe nicht nur Features — ich weiß was Nutzer wirklich brauchen.',
+    'stack.label': 'Stack',
+    'stack.title1': 'Die Tools mit denen',
+    'stack.title2': 'ich liefere.',
+    'stack.cat.ai': 'AI & Automation',
+    'stack.cat.lang': 'Sprachen',
+    'stack.cat.backend': 'Backend & APIs',
+    'stack.cat.frontend': 'Frontend',
+    'stack.cat.tools': 'DevOps & Tools',
+    'work.label': 'Ausgewählte Arbeit',
+    'work.title1': 'Sachen die',
+    'work.title2': 'wirklich laufen.',
+    'work.featured': 'Featured',
+    'work.live': 'Live-Demo',
+    'work.code': 'Quellcode',
+    'contact.label': 'Kontakt',
+    'contact.title1': 'Auf der Suche nach einem',
+    'contact.title2': 'Entwickler der liefert?',
+    'contact.subtitle': 'Sprechen wir. Festanstellung, Freelance, ein Projekt — mein Postfach ist offen.',
+    'footer.copy': '© 2026 Mark Amaechi',
+    'footer.note': 'Mit Sorgfalt gebaut.',
+    'proj.leadtriage.sub': 'KI-gestützte Lead-Qualifizierung',
+    'proj.leadtriage.desc': 'Produktives Lead-Intake-System: Leads kommen per Formular oder Webhook rein, GPT klassifiziert sie nach Priorität und Kategorie, schlägt die nächste Aktion vor und pusht sie in ein Kanban. FastAPI + OpenAI + SQLite. Demo-Mode läuft ohne API-Key.',
+    'proj.drift.sub': 'Generatives Flow Field',
+    'proj.drift.desc': 'Ein Partikelsystem in dem tausende Punkte einem Perlin-Noise-Vektorfeld folgen und lange, glühende Trails malen. Klick reseedet das Feld, die Maus schiebt die Partikel.',
+    'proj.website.sub': 'Websites für Dienstleister',
+    'proj.website.desc': 'Drei echte, deployte Websites für Dienstleister — Dachdecker, Gebäudereinigung, Premium-Service. Klares Design, keine Stockfoto-Optik, mobile-first, gebaut um zu konvertieren. Klick auf jede um die Live-Version zu öffnen.',
+    'proj.automation.sub': 'Formular → CRM → Handy',
+    'proj.automation.desc': 'Eine komplette Automations-Pipeline die ein ausgefülltes Kontaktformular nimmt, per GPT klassifiziert, eine automatische Antwort schickt, den Lead ins CRM pusht, dich per Telegram benachrichtigt und einen Kalender-Slot blockt. Sichtbar Schritt für Schritt im Browser — Formular abschicken und zusehen.',
+    'proj.mobile.sub': 'Mobile-App-Prototyp',
+    'proj.mobile.desc': 'Ein klickbarer Mobile-App-Prototyp mit Onboarding, Home, Detail- und Profil-Flows. Im Phone-Frame dargestellt, du tappst dich durch die Screens wie durch eine echte App.',
+    'proj.scraper.sub': 'Scraper + FastAPI-Dashboard',
+    'proj.scraper.desc': 'Python-Scraper mit Web-Dashboard. Live-Progress, durchsuchbare Ergebnisse, SQLite-History, One-Click-Export nach Excel/CSV/JSON. Fest auf ein öffentliches Übungs-Ziel gelockt — Demo, kein Allzweck-Tool.',
+    'proj.shell.sub': 'Command-Line-Shell in C++',
+    'proj.shell.desc': 'Eine eigene Windows-Shell in C++17. Tokenisierung, Built-in Commands (cd, echo, help, exit), mit Fallback auf Win32 CreateProcess für externe Programme. Probier sie in der interaktiven Demo aus.',
+  },
+};
+---
+
+<Layout
+  title="Mark Amaechi — Software Developer & AI Automation Specialist"
+  description="Software Developer & AI Automation Specialist based in Düsseldorf. Python, JavaScript, PHP, C++, REST APIs, AI integration. Available for hire."
+>
+
+  <!-- ═══ CANVAS BACKGROUND ═══ -->
+  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink-950/60 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-violet flex items-center justify-center text-ink-950 font-bold text-lg">M</div>
+        <span class="font-display font-semibold text-ink-50 group-hover:text-accent-cyan transition">Mark Amaechi</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#about" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.about">About</a>
+        <a href="#capabilities" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.capabilities">Capabilities</a>
+        <a href="#skills" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.stack">Stack</a>
+        <a href="#work" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.work">Work</a>
+        <a href="#contact" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Language toggle -->
+        <div class="flex items-center bg-ink-900/60 border border-white/10 rounded-full p-0.5 font-mono text-[11px]">
+          <button data-lang="en" class="lang-btn px-3 py-1 rounded-full transition text-ink-400">EN</button>
+          <button data-lang="de" class="lang-btn px-3 py-1 rounded-full transition text-ink-400">DE</button>
+        </div>
+        <a href="#contact" class="btn-secondary text-sm py-2 px-5 hidden sm:inline-flex" data-i18n="nav.cta">Let's talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="top" class="min-h-screen flex items-center relative overflow-hidden pt-20">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 w-full relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: text -->
+        <div class="lg:col-span-7 order-2 lg:order-1">
+          <div class="reveal mb-6">
+            <span class="section-label" data-i18n="hero.label">Software Developer · AI Automation · Düsseldorf</span>
+          </div>
+          <h1 class="reveal font-display font-bold text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight mb-8" style="transition-delay: 80ms">
+            <span data-i18n="hero.title.greeting">Hi, I'm</span><br>
+            <span class="text-gradient">Mark</span> —<br>
+            <span data-i18n="hero.title.tagline1">I ship software</span><br>
+            <span data-i18n="hero.title.tagline2">that works.</span>
+          </h1>
+          <p class="reveal text-ink-300 text-lg md:text-xl max-w-xl leading-relaxed mb-6" style="transition-delay: 160ms" data-i18n="hero.subtitle">
+            Software Developer &amp; AI Automation Specialist based in Düsseldorf. I build
+            production-grade software, integrate AI systems, and automate the work that
+            slows teams down.
+          </p>
+          <div class="reveal mb-10 font-mono text-sm text-ink-400 flex flex-wrap gap-x-1 gap-y-1" style="transition-delay: 220ms">
+            <span class="text-accent-cyan">Python</span>
+            <span class="text-ink-600">·</span>
+            <span>JavaScript</span>
+            <span class="text-ink-600">·</span>
+            <span>PHP</span>
+            <span class="text-ink-600">·</span>
+            <span>C++</span>
+            <span class="text-ink-600">·</span>
+            <span>SQL</span>
+            <span class="text-ink-600">·</span>
+            <span class="text-accent-violet">AI Integration</span>
+          </div>
+          <div class="reveal flex flex-wrap gap-4" style="transition-delay: 300ms">
+            <a href="#work" class="btn-primary">
+              <span data-i18n="hero.cta.work">View my work</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+            </a>
+            <a href="#contact" class="btn-secondary" data-i18n="hero.cta.contact">Get in touch</a>
+          </div>
+        </div>
+
+        <!-- Right: photo with glow -->
+        <div class="lg:col-span-5 order-1 lg:order-2">
+          <div class="reveal relative mx-auto max-w-[340px] aspect-[2/3]" style="transition-delay: 120ms">
+            <!-- Glow layers -->
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-cyan via-accent-teal to-accent-violet rounded-[32px] blur-3xl opacity-50 animate-glow-pulse"></div>
+            <div class="absolute -inset-2 bg-gradient-to-tr from-accent-violet to-accent-cyan rounded-[34px] opacity-80"></div>
+            <!-- Photo -->
+            <div class="relative rounded-[32px] overflow-hidden bg-ink-800 h-full shadow-2xl shadow-black/50">
+              <img src="/images/mark.png" alt="Mark Amaechi" class="w-full h-full object-cover" />
+              <!-- Gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
+              <!-- Corner badges -->
+              <div class="absolute top-4 left-4 flex items-center gap-2 glass px-3 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-xs font-medium text-ink-100">Available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ink-400">
+      <span class="text-[10px] uppercase tracking-[0.25em] font-mono">Scroll</span>
+      <div class="w-[1px] h-8 bg-gradient-to-b from-accent-cyan to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" class="py-32 md:py-40 relative">
+    <div class="max-w-4xl mx-auto px-6 md:px-10">
+      <div class="reveal mb-12">
+        <span class="section-label" data-i18n="about.label">About</span>
+        <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 leading-tight">
+          <span data-i18n="about.title1">Certified developer.</span><br>
+          <span class="text-gradient" data-i18n="about.title2">AI-native by practice.</span>
+        </h2>
+      </div>
+      <div class="reveal space-y-5 text-ink-200 text-lg md:text-xl leading-relaxed" style="transition-delay: 120ms">
+        <p data-i18n-html="about.p1">
+          I'm a <strong class="text-ink-50">certified software developer (IHK)</strong> and AI automation
+          specialist — from C++ systems programming to Python automation and JavaScript web apps.
+        </p>
+        <p data-i18n-html="about.p2">
+          I build <strong class="text-ink-50">production-grade software</strong> — CRM systems with REST APIs,
+          automated workflows and database architecture that goes from concept to deployment independently.
+        </p>
+        <p data-i18n-html="about.p3">
+          I work daily with AI tools like <strong class="text-ink-50">Claude Code</strong> and the
+          <strong class="text-ink-50"> OpenAI API</strong>, building GPT-powered automations and
+          integrating LLMs into real applications.
+        </p>
+        <p data-i18n-html="about.p4">
+          Before development, I spent three years in professional client communication — which
+          means I don't just write code, I know what users are actually trying to do when they describe a problem.
+        </p>
+        <p class="text-accent-cyan font-mono text-base" data-i18n="about.available">
+          Based in Düsseldorf. Available now.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CAPABILITIES (formerly Experience) ═══ -->
+  <section id="capabilities" class="py-32 md:py-40 relative">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <div class="reveal mb-20">
+        <span class="section-label" data-i18n="cap.label">Capabilities</span>
+        <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 leading-tight">
+          <span data-i18n="cap.title1">What I build.</span><br>
+          <span class="text-gradient" data-i18n="cap.title2">What I solve.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {capabilities.map((cap, i) => (
+          <div class="reveal glass rounded-2xl p-7 group hover:border-accent-cyan/30 transition-colors duration-300" style={`transition-delay: ${i * 60}ms`}>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-violet/20 border border-accent-cyan/30 flex items-center justify-center mb-5 text-accent-cyan group-hover:scale-110 transition-transform duration-300">
+              {cap.icon === 'stack' && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              )}
+              {cap.icon === 'api' && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              )}
+              {cap.icon === 'ai' && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+              )}
+              {cap.icon === 'db' && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+              )}
+              {cap.icon === 'systems' && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
+              )}
+              {cap.icon === 'ux' && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
+              )}
+            </div>
+            <h3 class="font-display font-bold text-xl text-ink-50 mb-2" data-i18n={cap.title}>{cap.title}</h3>
+            <p class="text-ink-400 text-sm leading-relaxed" data-i18n={cap.desc}>{cap.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS / STACK ═══ -->
+  <section id="skills" class="py-32 md:py-40 relative">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <div class="reveal mb-16">
+        <span class="section-label" data-i18n="stack.label">Stack</span>
+        <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 leading-tight">
+          <span data-i18n="stack.title1">The tools I use</span><br>
+          <span class="text-gradient" data-i18n="stack.title2">to ship.</span>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {Object.entries(skills).map(([cat, items], i) => (
+          <div class="reveal glass rounded-2xl p-7" style={`transition-delay: ${i * 60}ms`}>
+            <h3 class="text-accent-cyan font-mono text-[11px] uppercase tracking-widest mb-5" data-i18n={stackCatKeys[cat]}>{cat}</h3>
+            <div class="flex flex-wrap gap-2">
+              {items.map((s) => (
+                <span class="inline-block px-3 py-1.5 rounded-lg bg-ink-800/60 border border-ink-700/40 text-ink-200 text-sm font-medium hover:border-accent-cyan/50 hover:text-accent-cyan hover:-translate-y-0.5 transition-all cursor-default">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WORK / PROJECTS ═══ -->
+  <section id="work" class="py-32 md:py-40 relative">
+    <div class="max-w-6xl mx-auto px-6 md:px-10">
+      <div class="reveal mb-20">
+        <span class="section-label" data-i18n="work.label">Selected work</span>
+        <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 leading-tight">
+          <span data-i18n="work.title1">Things I've</span><br>
+          <span class="text-gradient" data-i18n="work.title2">actually shipped.</span>
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        {projects.map((p, i) => (
+          <div class="reveal project-card group" style={`transition-delay: ${(i % 3) * 80}ms`}>
+            <a href={p.liveUrl || p.codeUrl || '#'} class="block" target={p.liveUrl && p.liveUrl.startsWith('http') ? '_blank' : '_self'}>
+              <div class="glass rounded-3xl p-8 md:p-10 border border-white/5 hover:border-accent-cyan/30 transition-all duration-500 group-hover:bg-ink-900/60">
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                  <!-- Preview -->
+                  <div class="md:col-span-5">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink-900 border border-white/5 project-preview" data-preview={p.image}>
+                    </div>
+                  </div>
+                  <!-- Text -->
+                  <div class="md:col-span-7">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="font-mono text-xs text-accent-cyan">0{i + 1}</span>
+                      <span class="text-ink-500 text-xs uppercase tracking-widest" data-i18n={p.subtitleKey}>—</span>
+                      {p.featured && (
+                        <span class="ml-auto text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/15 text-accent-cyan font-mono uppercase tracking-wider" data-i18n="work.featured">Featured</span>
+                      )}
+                    </div>
+                    <h3 class="font-display font-bold text-3xl md:text-4xl text-ink-50 mb-4 group-hover:text-gradient transition">{p.title}</h3>
+                    <p class="text-ink-300 leading-relaxed mb-6" data-i18n={p.descriptionKey}>—</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                      {p.tags.map((t) => (
+                        <span class="inline-block px-3 py-1 rounded-md bg-ink-800/50 border border-ink-700/40 text-ink-300 text-xs font-mono">{t}</span>
+                      ))}
+                    </div>
+                    <div class="flex gap-4">
+                      {p.liveUrl && (
+                        <span class="inline-flex items-center gap-2 text-accent-cyan text-sm font-semibold">
+                          <span data-i18n="work.live">Live demo</span>
+                          <svg class="w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </span>
+                      )}
+                      {p.codeUrl && (
+                        <a href={p.codeUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink-400 text-sm font-medium hover:text-accent-cyan transition" onclick="event.stopPropagation()">
+                          <span data-i18n="work.code">View code</span>
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact" class="py-32 md:py-48 relative">
+    <div class="max-w-4xl mx-auto px-6 md:px-10 text-center">
+      <div class="reveal">
+        <span class="section-label" data-i18n="contact.label">Contact</span>
+        <h2 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl mt-6 mb-8 leading-[0.95]">
+          <span data-i18n="contact.title1">Looking for a developer</span><br>
+          <span class="text-gradient" data-i18n="contact.title2">who ships?</span>
+        </h2>
+        <p class="text-ink-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12" data-i18n="contact.subtitle">
+          Let's talk. Production work, freelance, a role to fill — my inbox is open.
+        </p>
+        <a href="mailto:markamaechi@gmail.com" class="btn-primary text-base md:text-lg px-10 py-5">
+          markamaechi@gmail.com
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <div class="mt-14 flex items-center justify-center gap-8 text-ink-400">
+          <a href="https://github.com/Mark1Anthony" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-accent-cyan transition-colors group">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.82 1.31 3.51 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.14 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.92 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22 0 1.61-.01 2.9-.01 3.3 0 .32.21.69.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span class="text-sm group-hover:underline">GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mark-amaechi/" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-accent-cyan transition-colors group">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span class="text-sm group-hover:underline">LinkedIn</span>
+          </a>
+          <a href="mailto:markamaechi@gmail.com" class="flex items-center gap-2 hover:text-accent-cyan transition-colors group">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span class="text-sm group-hover:underline">Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="border-t border-white/5 py-10">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 flex flex-wrap items-center justify-between gap-4 text-sm text-ink-500">
+      <div data-i18n="footer.copy">© 2026 Mark Amaechi</div>
+      <div class="font-mono text-xs" data-i18n="footer.note">Crafted with care.</div>
+    </div>
+  </footer>
+
+  <!-- i18n data -->
+  <script type="application/json" id="i18n-data" set:html={JSON.stringify(t)}></script>
+
+  <!-- ═══ SCRIPT: canvas bg, stats counter, project previews ═══ -->
+  <script>
+    // ─── 1. Animated canvas background (nebula / particle grid) ───
+    const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    let W = 0, H = 0;
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    interface Dot { x: number; y: number; vx: number; vy: number; size: number; hue: number; }
+    const dots: Dot[] = [];
+    const DOT_COUNT = Math.min(80, Math.floor((W * H) / 20000));
+    for (let i = 0; i < DOT_COUNT; i++) {
+      dots.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        size: Math.random() * 1.8 + 0.4,
+        hue: Math.random() * 60 + 160, // cyan-teal-purple range
+      });
+    }
+
+    let mx = W / 2, my = H / 2;
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    function drawBg() {
+      // Slow fade instead of clearing — creates trails
+      ctx.fillStyle = 'rgba(10, 10, 20, 0.08)';
+      ctx.fillRect(0, 0, W, H);
+
+      for (const d of dots) {
+        d.x += d.vx;
+        d.y += d.vy;
+        // Wrap around
+        if (d.x < 0) d.x = W;
+        if (d.x > W) d.x = 0;
+        if (d.y < 0) d.y = H;
+        if (d.y > H) d.y = 0;
+        // Mouse repel
+        const ddx = d.x - mx, ddy = d.y - my;
+        const dist = Math.sqrt(ddx * ddx + ddy * ddy);
+        if (dist < 180) {
+          const f = (180 - dist) / 180;
+          d.vx += (ddx / dist) * f * 0.04;
+          d.vy += (ddy / dist) * f * 0.04;
+        }
+        // Gentle damping
+        d.vx *= 0.99;
+        d.vy *= 0.99;
+        // Draw
+        ctx.fillStyle = `hsla(${d.hue}, 80%, 60%, 0.7)`;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw connecting lines between close dots
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 18000) {
+            const op = 1 - d2 / 18000;
+            ctx.strokeStyle = `rgba(94, 234, 212, ${op * 0.18})`;
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawBg);
+    }
+    drawBg();
+
+    // ─── 2. Number counters ───
+    const counters = document.querySelectorAll<HTMLElement>('.counter');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const el = e.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0', 10);
+          const duration = 1800;
+          const start = performance.now();
+          function tick(now: number) {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.floor(eased * target).toString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach((c) => countObserver.observe(c));
+
+    // ─── 3. Procedural project previews (drawn on canvas per card) ───
+    const previews = document.querySelectorAll<HTMLElement>('.project-preview');
+    previews.forEach((el) => {
+      const kind = el.dataset.preview;
+      const c = document.createElement('canvas');
+      c.width = 640;
+      c.height = 480;
+      c.style.width = '100%';
+      c.style.height = '100%';
+      el.appendChild(c);
+      const cx = c.getContext('2d')!;
+      drawPreview(cx, kind || 'drift', c.width, c.height);
+    });
+
+    function drawPreview(cx: CanvasRenderingContext2D, kind: string, w: number, h: number) {
+      // Background
+      const g = cx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, '#0a0a14');
+      g.addColorStop(1, '#13131f');
+      cx.fillStyle = g;
+      cx.fillRect(0, 0, w, h);
+
+      if (kind === 'automation') {
+        // Pipeline flowchart preview
+        cx.fillStyle = '#0d1117';
+        cx.fillRect(30, 30, w - 60, h - 60);
+        cx.strokeStyle = 'rgba(94, 234, 212, 0.2)';
+        cx.lineWidth = 1;
+        cx.strokeRect(30, 30, w - 60, h - 60);
+
+        // Title
+        cx.fillStyle = '#5eead4';
+        cx.font = '700 14px "JetBrains Mono", monospace';
+        cx.fillText('AUTOMATION PIPELINE', 50, 60);
+        cx.fillStyle = '#575e6d';
+        cx.font = '500 11px "JetBrains Mono", monospace';
+        cx.fillText('form → ai → crm → phone', 50, 78);
+
+        // Pipeline steps (horizontal flow)
+        const stepLabels = ['Form', 'Triage', 'Email', 'CRM', 'Phone', 'Done'];
+        const sx = 60;
+        const sy = 130;
+        const stepW = (w - 120) / stepLabels.length;
+        stepLabels.forEach((label, i) => {
+          const x = sx + i * stepW;
+          // Box
+          const grd = cx.createLinearGradient(x, sy, x + stepW - 14, sy + 50);
+          if (i < 4) {
+            grd.addColorStop(0, '#5eead4');
+            grd.addColorStop(1, '#22d3ee');
+          } else {
+            grd.addColorStop(0, '#1a1d25');
+            grd.addColorStop(1, '#14161c');
+          }
+          cx.fillStyle = grd;
+          cx.beginPath();
+          cx.roundRect(x, sy, stepW - 14, 50, 8);
+          cx.fill();
+          cx.strokeStyle = i < 4 ? '#5eead4' : 'rgba(94, 234, 212, 0.3)';
+          cx.lineWidth = 1.5;
+          cx.stroke();
+
+          // Label
+          cx.fillStyle = i < 4 ? '#0a0a14' : '#8a92a3';
+          cx.font = '700 11px "JetBrains Mono", monospace';
+          cx.textAlign = 'center';
+          cx.fillText(label, x + (stepW - 14) / 2, sy + 30);
+          cx.textAlign = 'left';
+
+          // Arrow to next
+          if (i < stepLabels.length - 1) {
+            cx.strokeStyle = i < 3 ? '#5eead4' : 'rgba(94, 234, 212, 0.3)';
+            cx.lineWidth = 2;
+            cx.beginPath();
+            cx.moveTo(x + stepW - 14, sy + 25);
+            cx.lineTo(x + stepW - 4, sy + 25);
+            cx.stroke();
+            cx.beginPath();
+            cx.moveTo(x + stepW - 8, sy + 21);
+            cx.lineTo(x + stepW - 4, sy + 25);
+            cx.lineTo(x + stepW - 8, sy + 29);
+            cx.stroke();
+          }
+        });
+
+        // Details below
+        cx.fillStyle = '#8a92a3';
+        cx.font = '500 11px monospace';
+        cx.fillText('POST /contact', 50, 230);
+        cx.fillStyle = '#5eead4';
+        cx.fillText('→  gpt-4o-mini classify', 50, 254);
+        cx.fillStyle = '#8a92a3';
+        cx.fillText('→  Resend transactional email', 50, 278);
+        cx.fillText('→  INSERT INTO leads (id, priority, ...)', 50, 302);
+        cx.fillText('→  Telegram bot ping', 50, 326);
+        cx.fillText('→  Google Calendar event', 50, 350);
+
+        cx.fillStyle = '#5eead4';
+        cx.font = '700 10px monospace';
+        cx.fillText('STATUS', 50, h - 60);
+        cx.fillStyle = '#34d399';
+        cx.beginPath();
+        cx.arc(95, h - 64, 3, 0, Math.PI * 2);
+        cx.fill();
+        cx.fillStyle = '#e6e8ed';
+        cx.fillText('done — 2.4s', 104, h - 60);
+      } else if (kind === 'website') {
+        // Browser window with form + automation flow
+        cx.fillStyle = '#ffffff';
+        cx.fillRect(30, 40, w - 60, h - 70);
+        cx.fillStyle = '#e6e6eb';
+        cx.fillRect(30, 40, w - 60, 26);
+        cx.fillStyle = '#ff5f57';
+        cx.beginPath(); cx.arc(46, 53, 4, 0, Math.PI * 2); cx.fill();
+        cx.fillStyle = '#febc2e';
+        cx.beginPath(); cx.arc(58, 53, 4, 0, Math.PI * 2); cx.fill();
+        cx.fillStyle = '#28c840';
+        cx.beginPath(); cx.arc(70, 53, 4, 0, Math.PI * 2); cx.fill();
+        // Url
+        cx.fillStyle = '#ffffff';
+        cx.fillRect(110, 48, 420, 14);
+        cx.fillStyle = '#6b7280';
+        cx.font = '500 10px monospace';
+        cx.fillText('nordlicht-consulting.de', 120, 59);
+        // Hero
+        cx.fillStyle = '#111827';
+        cx.font = '800 26px "Space Grotesk", sans-serif';
+        cx.fillText('Clean systems,', 50, 120);
+        const grd = cx.createLinearGradient(50, 130, 400, 160);
+        grd.addColorStop(0, '#2563eb');
+        grd.addColorStop(1, '#06b6d4');
+        cx.fillStyle = grd;
+        cx.fillText('zero chaos.', 50, 155);
+        // Button
+        cx.fillStyle = '#2563eb';
+        cx.fillRect(50, 180, 130, 34);
+        cx.fillStyle = '#ffffff';
+        cx.font = '600 12px sans-serif';
+        cx.fillText('Book a call →', 72, 202);
+        // Automation sidebar (right)
+        cx.fillStyle = '#0d1117';
+        cx.fillRect(w - 220, 90, 180, h - 180);
+        cx.fillStyle = '#5eead4';
+        cx.font = '700 10px monospace';
+        cx.fillText('PIPELINE', w - 205, 110);
+        // Steps
+        const steps = ['Form received', 'AI classify', 'Auto reply', 'CRM push', 'Slack ping'];
+        steps.forEach((s, i) => {
+          const y = 135 + i * 32;
+          cx.fillStyle = i < 3 ? '#5eead4' : '#374151';
+          cx.beginPath();
+          cx.arc(w - 200, y, 4, 0, Math.PI * 2);
+          cx.fill();
+          if (i < 4) {
+            cx.strokeStyle = i < 2 ? '#5eead4' : '#374151';
+            cx.lineWidth = 1;
+            cx.beginPath();
+            cx.moveTo(w - 200, y + 4);
+            cx.lineTo(w - 200, y + 28);
+            cx.stroke();
+          }
+          cx.fillStyle = i < 3 ? '#e7e7f2' : '#6b7280';
+          cx.font = '500 10px sans-serif';
+          cx.fillText(s, w - 186, y + 3);
+        });
+      } else if (kind === 'mobile') {
+        // Phone frame
+        const px = w / 2 - 100;
+        const py = 30;
+        const pw = 200;
+        const ph = h - 60;
+        // Bezel
+        cx.fillStyle = '#000000';
+        cx.beginPath();
+        cx.roundRect(px, py, pw, ph, 28);
+        cx.fill();
+        // Screen
+        const sg = cx.createLinearGradient(px, py, px, py + ph);
+        sg.addColorStop(0, '#0f172a');
+        sg.addColorStop(1, '#1e1b4b');
+        cx.fillStyle = sg;
+        cx.beginPath();
+        cx.roundRect(px + 6, py + 6, pw - 12, ph - 12, 22);
+        cx.fill();
+        // Notch
+        cx.fillStyle = '#000000';
+        cx.beginPath();
+        cx.roundRect(px + pw / 2 - 36, py + 6, 72, 14, 7);
+        cx.fill();
+        // Logo circle
+        const cg = cx.createLinearGradient(px + pw / 2 - 30, py + 60, px + pw / 2 + 30, py + 120);
+        cg.addColorStop(0, '#22d3ee');
+        cg.addColorStop(1, '#a78bfa');
+        cx.fillStyle = cg;
+        cx.beginPath();
+        cx.roundRect(px + pw / 2 - 32, py + 80, 64, 64, 16);
+        cx.fill();
+        cx.fillStyle = '#ffffff';
+        cx.font = '700 28px sans-serif';
+        cx.textAlign = 'center';
+        cx.fillText('P', px + pw / 2, py + 122);
+        // Title
+        cx.fillStyle = '#ffffff';
+        cx.font = '700 20px "Space Grotesk", sans-serif';
+        cx.fillText('Welcome to Pulse', px + pw / 2, py + 180);
+        cx.fillStyle = 'rgba(255,255,255,0.6)';
+        cx.font = '500 11px sans-serif';
+        cx.fillText('Your daily fitness tracker.', px + pw / 2, py + 200);
+        cx.fillText('Simple rings. Zero noise.', px + pw / 2, py + 216);
+        // Dots
+        cx.fillStyle = '#22d3ee';
+        cx.fillRect(px + pw / 2 - 18, py + 250, 16, 3);
+        cx.fillStyle = 'rgba(255,255,255,0.3)';
+        cx.beginPath(); cx.arc(px + pw / 2 + 4, py + 252, 2, 0, Math.PI * 2); cx.fill();
+        cx.beginPath(); cx.arc(px + pw / 2 + 14, py + 252, 2, 0, Math.PI * 2); cx.fill();
+        // Button
+        const bg = cx.createLinearGradient(px + 24, py + 290, px + pw - 24, py + 290);
+        bg.addColorStop(0, '#22d3ee');
+        bg.addColorStop(1, '#06b6d4');
+        cx.fillStyle = bg;
+        cx.beginPath();
+        cx.roundRect(px + 24, py + 280, pw - 48, 36, 14);
+        cx.fill();
+        cx.fillStyle = '#0f172a';
+        cx.font = '700 12px sans-serif';
+        cx.fillText('Get started', px + pw / 2, py + 303);
+        cx.textAlign = 'left';
+      } else if (kind === 'leadtriage') {
+        // Lead Triage — kanban columns mockup
+        const cols = [
+          { label: 'HOT', color: '#f472b6', count: 3 },
+          { label: 'WARM', color: '#fbbf24', count: 5 },
+          { label: 'COLD', color: '#60a5fa', count: 8 },
+        ];
+        const colW = (w - 90) / 3;
+        cx.font = '700 11px "JetBrains Mono", monospace';
+        cols.forEach((col, i) => {
+          const cx0 = 30 + i * (colW + 15);
+          // Column bg
+          cx.fillStyle = 'rgba(20, 22, 35, 0.7)';
+          cx.strokeStyle = 'rgba(94, 234, 212, 0.12)';
+          cx.lineWidth = 1;
+          cx.fillRect(cx0, 60, colW, h - 90);
+          cx.strokeRect(cx0, 60, colW, h - 90);
+          // Column header dot + label
+          cx.fillStyle = col.color;
+          cx.beginPath();
+          cx.arc(cx0 + 16, 80, 4, 0, Math.PI * 2);
+          cx.fill();
+          cx.fillText(col.label, cx0 + 26, 84);
+          cx.fillStyle = '#575e6d';
+          cx.fillText(`${col.count}`, cx0 + colW - 22, 84);
+          // Cards
+          for (let k = 0; k < col.count; k++) {
+            const cardY = 110 + k * 50;
+            if (cardY + 40 > h - 40) break;
+            cx.fillStyle = 'rgba(40, 44, 62, 0.85)';
+            cx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            cx.fillRect(cx0 + 10, cardY, colW - 20, 40);
+            cx.strokeRect(cx0 + 10, cardY, colW - 20, 40);
+            // Left accent bar (category)
+            cx.fillStyle = col.color;
+            cx.fillRect(cx0 + 10, cardY, 3, 40);
+            // Title line
+            cx.fillStyle = '#e7e7f2';
+            cx.font = '600 11px Inter, sans-serif';
+            const names = ['Acme Corp', 'NewCo', 'BigTech', 'Startup', 'Agency', 'Retail', 'SaaS', 'Bank', 'Media'];
+            cx.fillText(names[(i * 3 + k) % names.length], cx0 + 18, cardY + 15);
+            cx.fillStyle = '#8a92a3';
+            cx.font = '500 10px Inter, sans-serif';
+            cx.fillText('Lead · auto', cx0 + 18, cardY + 30);
+            cx.font = '700 11px "JetBrains Mono", monospace';
+          }
+        });
+        // Header banner
+        cx.fillStyle = '#5eead4';
+        cx.font = '700 13px "JetBrains Mono", monospace';
+        cx.fillText('LEAD TRIAGE', 30, 40);
+        cx.fillStyle = '#575e6d';
+        cx.font = '500 11px "JetBrains Mono", monospace';
+        cx.fillText('gpt-4 · classified · kanban', 160, 40);
+      } else if (kind === 'drift') {
+        // Flow field particle trails
+        for (let i = 0; i < 400; i++) {
+          const x = Math.random() * w;
+          const y = Math.random() * h;
+          const len = 30 + Math.random() * 80;
+          const a = Math.sin(x * 0.01) + Math.cos(y * 0.012) * 1.2;
+          const grd = cx.createLinearGradient(x, y, x + Math.cos(a) * len, y + Math.sin(a) * len);
+          const hue = 170 + (x / w) * 90;
+          grd.addColorStop(0, `hsla(${hue}, 80%, 65%, 0)`);
+          grd.addColorStop(0.5, `hsla(${hue}, 80%, 65%, 0.6)`);
+          grd.addColorStop(1, `hsla(${hue}, 80%, 65%, 0)`);
+          cx.strokeStyle = grd;
+          cx.lineWidth = 1.2;
+          cx.beginPath();
+          cx.moveTo(x, y);
+          cx.lineTo(x + Math.cos(a) * len, y + Math.sin(a) * len);
+          cx.stroke();
+        }
+      } else if (kind === 'tictactoe') {
+        // TTT board with X and O
+        cx.strokeStyle = 'rgba(255,255,255,0.2)';
+        cx.lineWidth = 3;
+        const cs = 100;
+        const ox = w/2 - cs*1.5, oy = h/2 - cs*1.5;
+        for (let i = 1; i < 3; i++) {
+          cx.beginPath(); cx.moveTo(ox + cs*i, oy); cx.lineTo(ox + cs*i, oy + cs*3); cx.stroke();
+          cx.beginPath(); cx.moveTo(ox, oy + cs*i); cx.lineTo(ox + cs*3, oy + cs*i); cx.stroke();
+        }
+        // X (cyan)
+        cx.strokeStyle = '#22d3ee';
+        cx.lineWidth = 6;
+        cx.lineCap = 'round';
+        const drawX = (col: number, row: number) => {
+          const x0 = ox + cs * col + 25, y0 = oy + cs * row + 25;
+          const x1 = ox + cs * (col+1) - 25, y1 = oy + cs * (row+1) - 25;
+          cx.beginPath(); cx.moveTo(x0, y0); cx.lineTo(x1, y1); cx.stroke();
+          cx.beginPath(); cx.moveTo(x1, y0); cx.lineTo(x0, y1); cx.stroke();
+        };
+        const drawO = (col: number, row: number) => {
+          cx.strokeStyle = '#f472b6';
+          cx.beginPath();
+          cx.arc(ox + cs*col + cs/2, oy + cs*row + cs/2, cs/2 - 22, 0, Math.PI*2);
+          cx.stroke();
+          cx.strokeStyle = '#22d3ee';
+        };
+        drawX(0, 0); drawO(1, 0); drawX(1, 1); drawO(2, 1); drawX(2, 2);
+      } else if (kind === 'shell') {
+        // Terminal mockup
+        cx.fillStyle = 'rgba(20, 20, 35, 0.8)';
+        cx.fillRect(40, 40, w - 80, h - 80);
+        cx.strokeStyle = 'rgba(94, 234, 212, 0.25)';
+        cx.lineWidth = 1;
+        cx.strokeRect(40, 40, w - 80, h - 80);
+        // Traffic lights
+        const dots = ['#f87171', '#fbbf24', '#5eead4'];
+        dots.forEach((c, i) => { cx.fillStyle = c; cx.beginPath(); cx.arc(60 + i*16, 60, 5, 0, Math.PI*2); cx.fill(); });
+        // Text lines
+        cx.font = '600 18px "JetBrains Mono", monospace';
+        cx.fillStyle = '#5eead4'; cx.fillText('MyShell>', 60, 130);
+        cx.fillStyle = '#e7e7f2'; cx.fillText('help', 170, 130);
+        cx.fillStyle = '#9d9dbd'; cx.font = '500 15px "JetBrains Mono", monospace';
+        cx.fillText('Built-in commands:', 60, 160);
+        cx.fillText('  cd <dir>', 60, 185);
+        cx.fillText('  echo <text>', 60, 205);
+        cx.fillText('  exit', 60, 225);
+        cx.fillStyle = '#5eead4'; cx.font = '600 18px "JetBrains Mono", monospace';
+        cx.fillText('MyShell>', 60, 270);
+        cx.fillStyle = '#e7e7f2'; cx.fillText('echo Hello, World!', 170, 270);
+        cx.fillStyle = '#9d9dbd'; cx.font = '500 15px "JetBrains Mono", monospace';
+        cx.fillText('Hello, World!', 60, 295);
+        cx.fillStyle = '#5eead4'; cx.font = '600 18px "JetBrains Mono", monospace';
+        cx.fillText('MyShell> ▊', 60, 340);
+      } else if (kind === 'scraper') {
+        // Data bars
+        const bars = 22;
+        for (let i = 0; i < bars; i++) {
+          const bh = 40 + Math.abs(Math.sin(i * 0.8) + Math.cos(i * 0.3)) * 160;
+          const bx = 60 + i * (w - 120) / bars;
+          const by = h - 80 - bh;
+          const grd = cx.createLinearGradient(bx, by, bx, by + bh);
+          grd.addColorStop(0, '#22d3ee');
+          grd.addColorStop(1, '#a78bfa');
+          cx.fillStyle = grd;
+          cx.fillRect(bx, by, (w - 120) / bars - 4, bh);
+        }
+        // Dotted line
+        cx.strokeStyle = 'rgba(94, 234, 212, 0.4)';
+        cx.setLineDash([6, 6]);
+        cx.lineWidth = 1.5;
+        cx.beginPath();
+        cx.moveTo(40, h * 0.4);
+        cx.lineTo(w - 40, h * 0.4);
+        cx.stroke();
+        cx.setLineDash([]);
+        // Label
+        cx.fillStyle = '#5eead4';
+        cx.font = '600 13px "JetBrains Mono", monospace';
+        cx.fillText('books_scraped.xlsx', 50, 40);
+        cx.fillStyle = '#9d9dbd';
+        cx.fillText('1000 rows · 3 cols', 50, 58);
+      } else if (kind === 'kundendb') {
+        // Table mockup
+        cx.fillStyle = 'rgba(20, 20, 35, 0.8)';
+        cx.fillRect(40, 40, w - 80, h - 80);
+        cx.strokeStyle = 'rgba(94, 234, 212, 0.25)';
+        cx.strokeRect(40, 40, w - 80, h - 80);
+        // Header
+        cx.fillStyle = '#5eead4';
+        cx.font = '700 14px "JetBrains Mono", monospace';
+        cx.fillText('ID', 60, 85);
+        cx.fillText('NAME', 110, 85);
+        cx.fillText('EMAIL', 260, 85);
+        cx.fillText('TELEFON', 440, 85);
+        // Rule
+        cx.strokeStyle = 'rgba(94, 234, 212, 0.3)';
+        cx.beginPath();
+        cx.moveTo(50, 100);
+        cx.lineTo(w - 50, 100);
+        cx.stroke();
+        // Rows
+        cx.font = '500 13px "JetBrains Mono", monospace';
+        const rows = [
+          ['1', 'Anna Müller', 'anna@example.com', '0211-12345'],
+          ['2', 'Thomas Berger', 'thomas@example.com', '0211-23456'],
+          ['3', 'Sabine Krause', 'sabine@example.com', '0211-34567'],
+          ['4', 'Marco Weber', 'marco@example.com', '0211-45678'],
+        ];
+        rows.forEach((r, i) => {
+          const y = 130 + i * 28;
+          cx.fillStyle = '#c9c9db';
+          cx.fillText(r[0], 60, y);
+          cx.fillText(r[1], 110, y);
+          cx.fillText(r[2], 260, y);
+          cx.fillText(r[3], 440, y);
+        });
+      } else if (kind === 'vocab') {
+        // DE → ES quiz card
+        cx.font = '700 20px "JetBrains Mono", monospace';
+        cx.fillStyle = '#9d9dbd';
+        cx.fillText('German', 60, 100);
+        cx.font = '800 48px "Space Grotesk", sans-serif';
+        const grd = cx.createLinearGradient(60, 110, 400, 160);
+        grd.addColorStop(0, '#5eead4'); grd.addColorStop(1, '#a78bfa');
+        cx.fillStyle = grd;
+        cx.fillText('Hallo', 60, 160);
+
+        // Arrow
+        cx.strokeStyle = '#5eead4';
+        cx.lineWidth = 3;
+        cx.lineCap = 'round';
+        cx.beginPath();
+        cx.moveTo(60, 220);
+        cx.lineTo(160, 220);
+        cx.stroke();
+        cx.beginPath();
+        cx.moveTo(150, 210);
+        cx.lineTo(160, 220);
+        cx.lineTo(150, 230);
+        cx.stroke();
+
+        cx.font = '700 20px "JetBrains Mono", monospace';
+        cx.fillStyle = '#9d9dbd';
+        cx.fillText('Spanish', 60, 280);
+        cx.font = '800 48px "Space Grotesk", sans-serif';
+        cx.fillStyle = '#f472b6';
+        cx.fillText('Hola', 60, 340);
+
+        cx.font = '500 13px "JetBrains Mono", monospace';
+        cx.fillStyle = '#5eead4';
+        cx.fillText('✓ correct · 12/20', 60, h - 60);
+      }
+    }
+
+    // ─── 4. Magnetic buttons ───
+    document.querySelectorAll<HTMLElement>('.btn-primary, .btn-secondary').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const mx = e.clientX - r.left - r.width / 2;
+        const my = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${mx * 0.15}px, ${my * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+
+    // ─── 5. Experience timeline fill (grows as you scroll past it) ───
+    const timeline = document.getElementById('timeline');
+    const timelineFill = document.getElementById('timeline-fill');
+    if (timeline && timelineFill) {
+      const updateTimeline = () => {
+        const rect = timeline.getBoundingClientRect();
+        const viewH = window.innerHeight;
+        // How much of the timeline is above the middle of the viewport?
+        const start = rect.top - viewH * 0.8;
+        const end = rect.bottom - viewH * 0.3;
+        const total = end - start;
+        const scrolled = -start;
+        const pct = Math.max(0, Math.min(1, scrolled / total));
+        timelineFill.style.height = (pct * 100) + '%';
+      };
+      updateTimeline();
+      window.addEventListener('scroll', updateTimeline, { passive: true });
+      window.addEventListener('resize', updateTimeline);
+    }
+
+    // ─── 6. 3D tilt on project cards ───
+    document.querySelectorAll<HTMLElement>('.project-card').forEach((card) => {
+      const inner = card.querySelector('.glass') as HTMLElement | null;
+      if (!inner) return;
+      inner.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+      inner.style.transformStyle = 'preserve-3d';
+
+      card.addEventListener('mousemove', (e) => {
+        const r = inner.getBoundingClientRect();
+        const mx = (e.clientX - r.left) / r.width;
+        const my = (e.clientY - r.top) / r.height;
+        const rx = (my - 0.5) * -6;
+        const ry = (mx - 0.5) * 6;
+        inner.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        inner.style.transform = '';
+      });
+    });
+
+    // ─── 7. Bilingual (DE / EN) ───
+    const i18nEl = document.getElementById('i18n-data');
+    const translations = i18nEl ? JSON.parse(i18nEl.textContent || '{}') : { en: {}, de: {} };
+
+    function applyLang(lang: string) {
+      const dict = translations[lang] || translations.en;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+        const key = el.dataset.i18n;
+        if (key && dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll<HTMLElement>('[data-i18n-html]').forEach((el) => {
+        const key = el.dataset.i18nHtml;
+        if (key && dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Toggle button states
+      document.querySelectorAll<HTMLElement>('.lang-btn').forEach((btn) => {
+        const active = btn.dataset.lang === lang;
+        btn.classList.toggle('bg-accent-cyan', active);
+        btn.classList.toggle('text-ink-950', active);
+        btn.classList.toggle('text-ink-400', !active);
+        btn.classList.toggle('font-bold', active);
+      });
+
+      localStorage.setItem('portfolio-lang', lang);
+    }
+
+    // Auto-detect initial language
+    const saved = localStorage.getItem('portfolio-lang');
+    const initial = saved || (navigator.language.toLowerCase().startsWith('de') ? 'de' : 'en');
+    applyLang(initial);
+
+    document.querySelectorAll<HTMLElement>('.lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const l = btn.dataset.lang;
+        if (l) applyLang(l);
+      });
+    });
+  </script>
+</Layout>

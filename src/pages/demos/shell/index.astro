@@ -1,0 +1,243 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="MyShell — Interactive Demo" description="Interactive demo of MyShell, a custom Windows command-line shell in C++17.">
+
+  <a href="/#work" class="fixed top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to portfolio
+  </a>
+
+  <div class="min-h-screen flex items-center justify-center py-24 px-6">
+    <div class="w-full max-w-4xl">
+
+      <div class="mb-8 text-center">
+        <h1 class="font-display font-bold text-4xl md:text-5xl mb-3">MyShell <span class="text-gradient">— Interactive Demo</span></h1>
+        <p class="text-ink-400 text-sm max-w-xl mx-auto">
+          A simulated run of my custom Windows shell. The real thing is a C++17 binary that
+          runs against the Win32 API. This is a browser mock so you can try the commands
+          without compiling anything. Type <span class="text-accent-cyan font-mono">help</span> to start.
+        </p>
+      </div>
+
+      <!-- Terminal window -->
+      <div class="bg-[#0d1117] border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+        <!-- Title bar -->
+        <div class="bg-[#161b22] border-b border-white/5 px-4 py-3 flex items-center gap-2">
+          <div class="flex gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+          </div>
+          <div class="flex-1 text-center text-xs text-ink-400 font-mono">MyShell — C:\Projects</div>
+        </div>
+        <!-- Terminal body -->
+        <div id="terminal" class="font-mono text-sm leading-relaxed p-5 h-[500px] overflow-y-auto text-[#c9d1d9]">
+          <div class="text-[#7ee787]">MyShell v1.0 — C++17 / Win32</div>
+          <div class="text-ink-400 mb-3">Type <span class="text-accent-cyan">help</span> for a list of commands. Try <span class="text-accent-cyan">echo Hello</span>, <span class="text-accent-cyan">cd Projects</span> or <span class="text-accent-cyan">dir</span>.</div>
+          <div id="output"></div>
+          <div class="flex items-center gap-2 mt-2" id="input-line">
+            <span class="text-[#7ee787] whitespace-nowrap"><span id="prompt-path">C:\Projects</span>&gt;</span>
+            <input
+              id="cmd-input"
+              type="text"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              class="flex-1 bg-transparent outline-none text-[#c9d1d9] font-mono"
+              placeholder="type a command..."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Help footer -->
+      <div class="mt-6 grid md:grid-cols-2 gap-3 text-xs text-ink-400">
+        <div class="glass rounded-lg p-3">
+          <div class="text-accent-cyan font-mono mb-1.5 text-[10px] uppercase tracking-widest">Built-in commands</div>
+          <code class="font-mono">help · cd · echo · exit · dir · cls · pwd · whoami · date</code>
+        </div>
+        <div class="glass rounded-lg p-3">
+          <div class="text-accent-cyan font-mono mb-1.5 text-[10px] uppercase tracking-widest">How it works</div>
+          <div>Tokenises input, looks up built-ins first, falls back to CreateProcess for external programs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    interface CommandResult {
+      html?: string;
+      text?: string;
+      cwdChange?: string;
+    }
+
+    const output = document.getElementById('output') as HTMLElement;
+    const input = document.getElementById('cmd-input') as HTMLInputElement;
+    const promptPath = document.getElementById('prompt-path') as HTMLElement;
+    const terminal = document.getElementById('terminal') as HTMLElement;
+
+    let cwd = 'C:\\Projects';
+    const history: string[] = [];
+    let histIdx = -1;
+
+    const fs: Record<string, string[]> = {
+      'C:\\':           ['Projects', 'Users', 'Windows', 'Program Files'],
+      'C:\\Projects':   ['MyShell', 'lead-triage', 'scraper.py', 'notes.md'],
+      'C:\\Users':      ['Mark', 'Default', 'Public'],
+      'C:\\Windows':    ['System32', 'explorer.exe', 'notepad.exe'],
+    };
+
+    function appendLine(html: string) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      output.appendChild(div);
+    }
+
+    function escapeHtml(s: string): string {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function runCommand(raw: string): CommandResult {
+      const line = raw.trim();
+      if (!line) return {};
+
+      const parts = line.split(/\s+/);
+      const cmd = parts[0].toLowerCase();
+      const args = parts.slice(1);
+
+      switch (cmd) {
+        case 'help':
+          return {
+            html: `<div class="text-ink-300 mt-1 mb-2">
+              <div class="text-[#7ee787]">Built-in commands:</div>
+              <div class="ml-4">
+                <div><span class="text-accent-cyan">help</span>           Show this help</div>
+                <div><span class="text-accent-cyan">cd &lt;dir&gt;</span>      Change directory</div>
+                <div><span class="text-accent-cyan">dir</span>            List current directory</div>
+                <div><span class="text-accent-cyan">pwd</span>            Print working directory</div>
+                <div><span class="text-accent-cyan">echo &lt;text&gt;</span>    Print text</div>
+                <div><span class="text-accent-cyan">cls</span>            Clear the screen</div>
+                <div><span class="text-accent-cyan">whoami</span>         Current user</div>
+                <div><span class="text-accent-cyan">date</span>           Current date &amp; time</div>
+                <div><span class="text-accent-cyan">exit</span>           Quit the shell</div>
+              </div>
+            </div>`,
+          };
+        case 'echo':
+          return { text: args.join(' ') };
+        case 'pwd':
+          return { text: cwd };
+        case 'cls':
+        case 'clear':
+          output.innerHTML = '';
+          return {};
+        case 'whoami':
+          return { text: 'mark' };
+        case 'date':
+          return { text: new Date().toString() };
+        case 'dir':
+        case 'ls': {
+          const files = fs[cwd] || [];
+          if (files.length === 0) {
+            return { text: '(empty)' };
+          }
+          const lines = files.map((f) => {
+            const isDir = !f.includes('.');
+            return isDir
+              ? `<span class="text-[#7ee787]">${f}/</span>`
+              : `<span class="text-ink-200">${f}</span>`;
+          });
+          return {
+            html: `<div class="grid grid-cols-3 gap-x-6 gap-y-1 ml-2 text-sm">${lines.map((l) => `<div>${l}</div>`).join('')}</div>`,
+          };
+        }
+        case 'cd': {
+          if (args.length === 0) return { text: cwd };
+          const target = args[0];
+          let newPath = cwd;
+          if (target === '..') {
+            const parts = cwd.split('\\').filter(Boolean);
+            if (parts.length > 1) {
+              parts.pop();
+              newPath = parts.join('\\');
+              if (!newPath.endsWith(':')) newPath = parts[0] + '\\' + parts.slice(1).join('\\');
+              if (parts.length === 1) newPath = parts[0] + '\\';
+            }
+          } else if (target.includes(':')) {
+            newPath = target;
+          } else {
+            const current = fs[cwd] || [];
+            const match = current.find((f) => f.toLowerCase() === target.toLowerCase() && !f.includes('.'));
+            if (!match) {
+              return { html: `<span class="text-[#f85149]">The system cannot find the path specified: ${escapeHtml(target)}</span>` };
+            }
+            newPath = cwd.endsWith('\\') ? cwd + match : cwd + '\\' + match;
+          }
+          if (!fs[newPath]) {
+            // Allow unknown dirs as empty
+            fs[newPath] = [];
+          }
+          return { cwdChange: newPath };
+        }
+        case 'exit':
+          appendLine(`<span class="text-[#f85149]">Shell terminated. Refresh to restart.</span>`);
+          input.disabled = true;
+          (document.getElementById('input-line') as HTMLElement).style.display = 'none';
+          return {};
+        default:
+          return {
+            html: `<span class="text-[#f85149]">'${escapeHtml(cmd)}' is not recognized as a built-in command. Try <span class="text-accent-cyan">help</span>.</span>`,
+          };
+      }
+    }
+
+    function execute(raw: string) {
+      // Echo the input back as history
+      appendLine(`<div><span class="text-[#7ee787]">${escapeHtml(cwd)}&gt;</span> <span class="text-[#c9d1d9]">${escapeHtml(raw)}</span></div>`);
+
+      const result = runCommand(raw);
+      if (result.html) appendLine(result.html);
+      else if (result.text !== undefined) appendLine(`<div>${escapeHtml(result.text)}</div>`);
+      if (result.cwdChange) {
+        cwd = result.cwdChange;
+        promptPath.textContent = cwd;
+      }
+
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const v = input.value;
+        if (v.trim()) {
+          history.push(v);
+          histIdx = history.length;
+        }
+        execute(v);
+        input.value = '';
+      } else if (e.key === 'ArrowUp') {
+        if (histIdx > 0) {
+          histIdx--;
+          input.value = history[histIdx];
+        }
+        e.preventDefault();
+      } else if (e.key === 'ArrowDown') {
+        if (histIdx < history.length - 1) {
+          histIdx++;
+          input.value = history[histIdx];
+        } else {
+          histIdx = history.length;
+          input.value = '';
+        }
+        e.preventDefault();
+      }
+    });
+
+    // Keep focus on the input
+    terminal.addEventListener('click', () => input.focus());
+    setTimeout(() => input.focus(), 100);
+  </script>
+</Layout>

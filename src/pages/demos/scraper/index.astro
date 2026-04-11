@@ -1,0 +1,141 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const books = [
+  { title: 'A Light in the Attic',                         price: '£51.77', rating: 3, availability: 'In stock' },
+  { title: 'Tipping the Velvet',                            price: '£53.74', rating: 1, availability: 'In stock' },
+  { title: 'Soumission',                                    price: '£50.10', rating: 1, availability: 'In stock' },
+  { title: 'Sharp Objects',                                 price: '£47.82', rating: 4, availability: 'In stock' },
+  { title: 'Sapiens: A Brief History of Humankind',         price: '£54.23', rating: 5, availability: 'In stock' },
+  { title: 'The Requiem Red',                               price: '£22.65', rating: 1, availability: 'In stock' },
+  { title: 'The Dirty Little Secrets of Getting Your Dream Job', price: '£33.34', rating: 4, availability: 'In stock' },
+  { title: 'The Coming Woman: A Novel',                     price: '£17.93', rating: 3, availability: 'In stock' },
+  { title: 'The Boys in the Boat',                          price: '£22.60', rating: 4, availability: 'In stock' },
+  { title: 'The Black Maria',                               price: '£52.15', rating: 1, availability: 'In stock' },
+  { title: 'Starving Hearts',                               price: '£13.99', rating: 2, availability: 'In stock' },
+  { title: "Shakespeare's Sonnets",                         price: '£20.66', rating: 4, availability: 'In stock' },
+  { title: 'Set Me Free',                                   price: '£17.46', rating: 5, availability: 'In stock' },
+  { title: "Scott Pilgrim's Precious Little Life",          price: '£52.29', rating: 5, availability: 'In stock' },
+  { title: 'Rip it Up and Start Again',                     price: '£35.02', rating: 5, availability: 'In stock' },
+];
+---
+
+<Layout title="Book Scraper — Live Demo" description="Static demo of the Book Scraper FastAPI dashboard.">
+
+  <a href="/#work" class="fixed top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to portfolio
+  </a>
+
+  <div class="min-h-screen py-24 px-4 md:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="mb-8 text-center">
+        <h1 class="font-display font-bold text-4xl md:text-5xl mb-3">Book Scraper <span class="text-gradient">— Dashboard Demo</span></h1>
+        <p class="text-ink-400 text-sm max-w-2xl mx-auto">
+          A static replica of the FastAPI dashboard. The real app runs locally with a Python backend
+          and SQLite storage. This version shows the same UI with pre-loaded sample data so you can
+          see what the scraper output looks like.
+        </p>
+      </div>
+
+      <!-- Dashboard container -->
+      <div class="bg-[#14161c] border border-[#242833] rounded-xl overflow-hidden shadow-2xl">
+
+        <!-- Header -->
+        <div class="px-7 pt-7">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-[11px] bg-gradient-to-br from-[#5eead4] to-[#22d3ee] flex items-center justify-center text-[#0a0a14] font-bold text-lg">B</div>
+            <div>
+              <div class="text-[#e6e8ed] text-[22px] font-bold leading-tight">Book Scraper</div>
+              <div class="text-[#8a92a3] text-[13px]">A small demo dashboard for books.toscrape.com</div>
+            </div>
+          </div>
+
+          <div class="mt-5 px-[18px] py-3.5 border-l-[3px] border-[#5eead4] bg-[rgba(94,234,212,0.08)] rounded-[6px] text-[13px] text-[#8a92a3] leading-relaxed">
+            <strong class="text-[#e6e8ed]">About this project.</strong> Tied to one target — <code class="font-mono text-xs bg-[rgba(255,255,255,0.06)] px-1.5 py-0.5 rounded">books.toscrape.com</code>. No configurable URL, no selector input. Portfolio project, not a general-purpose scraping tool.
+          </div>
+        </div>
+
+        <!-- Control panel -->
+        <div class="mx-7 mt-[22px] p-[22px_24px] bg-[#14161c] border border-[#242833] rounded-[10px]">
+          <div class="flex justify-between items-center mb-[18px]">
+            <span class="text-[11px] uppercase tracking-[0.15em] text-[#8a92a3] font-semibold">Scrape</span>
+            <span class="font-mono text-[12px] text-[#5eead4] px-[10px] py-1 bg-[rgba(94,234,212,0.1)] rounded">https://books.toscrape.com/</span>
+          </div>
+          <div class="flex items-center gap-3.5 flex-wrap">
+            <button disabled class="bg-[#5eead4] text-[#0a0a14] font-semibold text-[14px] px-[22px] py-2.5 rounded-lg cursor-default">Start scrape</button>
+            <div class="flex items-center gap-2 text-[13px] text-[#8a92a3]">
+              <span class="w-2 h-2 rounded-full bg-[#34d399]"></span>
+              <span>Done — 1000 books in 12.3s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex gap-1 mt-6 mx-7 border-b border-[#242833]">
+          <div class="px-[18px] py-2.5 text-[14px] font-medium text-[#e6e8ed] border-b-2 border-[#5eead4]">Results</div>
+          <div class="px-[18px] py-2.5 text-[14px] font-medium text-[#8a92a3]">History</div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="px-7 py-3.5 flex gap-2.5 items-center flex-wrap">
+          <div class="flex-1 min-w-[200px] relative">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#575e6d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+            <input type="text" value="sharp" disabled class="w-full pl-9 pr-4 py-2 rounded-md bg-[#1a1d25] border border-[#242833] text-sm text-[#e6e8ed] outline-none" />
+          </div>
+          <select disabled class="px-3 py-2 rounded-md bg-[#1a1d25] border border-[#242833] text-sm text-[#e6e8ed] outline-none">
+            <option>All ratings</option>
+          </select>
+          <div class="ml-auto flex gap-2">
+            <button disabled class="px-3 py-2 rounded-md bg-transparent border border-[#2e3340] text-xs text-[#e6e8ed] font-medium cursor-default">.xlsx</button>
+            <button disabled class="px-3 py-2 rounded-md bg-transparent border border-[#2e3340] text-xs text-[#e6e8ed] font-medium cursor-default">.csv</button>
+            <button disabled class="px-3 py-2 rounded-md bg-transparent border border-[#2e3340] text-xs text-[#e6e8ed] font-medium cursor-default">.json</button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="mx-7 mb-7 bg-[#14161c] border border-[#242833] rounded-[10px] overflow-hidden">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-[#1a1d25] text-left">
+                <th class="px-[18px] py-3 font-semibold text-[#8a92a3] text-[11px] uppercase tracking-wider w-10">#</th>
+                <th class="px-[18px] py-3 font-semibold text-[#8a92a3] text-[11px] uppercase tracking-wider">Title</th>
+                <th class="px-[18px] py-3 font-semibold text-[#8a92a3] text-[11px] uppercase tracking-wider w-24">Price</th>
+                <th class="px-[18px] py-3 font-semibold text-[#8a92a3] text-[11px] uppercase tracking-wider w-32">Rating</th>
+                <th class="px-[18px] py-3 font-semibold text-[#8a92a3] text-[11px] uppercase tracking-wider w-28">Availability</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((b, i) => (
+                <tr class="border-t border-[#242833] hover:bg-[#1a1d25] transition">
+                  <td class="px-[18px] py-3"><span class="text-[#575e6d] font-mono text-[12px]">{i + 1}</span></td>
+                  <td class="px-[18px] py-3 text-[#e6e8ed]">{b.title}</td>
+                  <td class="px-[18px] py-3 font-mono font-semibold text-[#5eead4]">{b.price}</td>
+                  <td class="px-[18px] py-3">
+                    <div class="flex gap-0.5">
+                      {[1, 2, 3, 4, 5].map((k) => (
+                        <svg class={`w-3.5 h-3.5 ${k <= b.rating ? 'text-amber-400' : 'text-[#2e3340]'}`} fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.29 3.96a1 1 0 00.95.69h4.16c.97 0 1.37 1.24.59 1.81l-3.37 2.45a1 1 0 00-.36 1.12l1.29 3.95c.3.92-.76 1.69-1.54 1.12l-3.37-2.45a1 1 0 00-1.18 0l-3.37 2.45c-.78.57-1.84-.2-1.54-1.12l1.29-3.95a1 1 0 00-.36-1.12L2.05 9.39c-.78-.57-.38-1.81.59-1.81h4.16a1 1 0 00.95-.69l1.3-3.96z"/>
+                        </svg>
+                      ))}
+                    </div>
+                  </td>
+                  <td class="px-[18px] py-3 text-[#8a92a3] text-[13px]">{b.availability}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div class="px-[18px] py-3 bg-[#1a1d25] border-t border-[#242833] text-[12px] text-[#8a92a3] flex justify-between">
+            <span>15 of 1000 books</span>
+            <span>Sorted by scrape order</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-ink-500 text-xs">
+        This is a static snapshot. <a href="https://github.com/Mark1Anthony/Python-Webscraper" target="_blank" class="text-accent-cyan hover:underline">See the full source on GitHub</a> or run it locally for the real backend experience.
+      </p>
+    </div>
+  </div>
+</Layout>

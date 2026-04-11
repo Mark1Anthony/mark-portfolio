@@ -1,0 +1,327 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const seedLeads = [
+  {
+    name: 'Sarah Lang',
+    company: 'Nord Capital',
+    email: 'sarah@nordcapital.de',
+    priority: 'hot',
+    category: 'Finance',
+    summary: 'Clear budget and timeline, decision-maker, wants CRM integration live by end of Q2.',
+    action: 'Call within 24h and send a calendar link.',
+    reasoning: 'Message contains urgency and buying signals.',
+    source: 'website',
+  },
+  {
+    name: 'Jonas Richter',
+    company: 'Bitfarm GmbH',
+    email: 'jonas@bitfarm.io',
+    priority: 'hot',
+    category: 'Retail',
+    summary: 'Existing CRM goes offline next week, urgent replacement needed.',
+    action: 'Call within 24h and send a calendar link.',
+    reasoning: 'Message contains urgency and buying signals.',
+    source: 'website',
+  },
+  {
+    name: 'Tom Becker',
+    company: 'Becker & Partner',
+    email: 'tom@beckerpartner.de',
+    priority: 'warm',
+    category: 'Consulting',
+    summary: 'Exploring lead-automation providers, wants to see a demo.',
+    action: 'Send a tailored pitch + case study by email.',
+    reasoning: 'Interested and exploratory, no hard buying signal yet.',
+    source: 'linkedin',
+  },
+  {
+    name: 'Petra Kurz',
+    company: 'Kurz Retail',
+    email: 'petra@kurzretail.de',
+    priority: 'warm',
+    category: 'E-commerce',
+    summary: 'Trade-fair meet, evaluating tools for customer follow-ups.',
+    action: 'Send a tailored pitch + case study by email.',
+    reasoning: 'Exploring options, no timeline specified.',
+    source: 'event',
+  },
+  {
+    name: 'Maria Weiß',
+    company: 'studioweiss',
+    email: 'maria@studioweiss.com',
+    priority: 'cold',
+    category: 'Agency',
+    summary: 'Small design agency in discovery phase, no urgency.',
+    action: 'Add to nurture sequence, check back in 2 weeks.',
+    reasoning: 'Early-stage, vague, information-gathering.',
+    source: 'referral',
+  },
+];
+
+const cols = ['hot', 'warm', 'cold'];
+---
+
+<Layout title="Lead Triage — Demo" description="Static demo of the Lead Triage AI classification dashboard.">
+
+  <a href="/#work" class="fixed top-6 left-6 z-30 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to portfolio
+  </a>
+
+  <div class="min-h-screen py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-8 text-center">
+        <h1 class="font-display font-bold text-4xl md:text-5xl mb-3">Lead Triage <span class="text-gradient">— Dashboard Demo</span></h1>
+        <p class="text-ink-400 text-sm max-w-2xl mx-auto">
+          A static snapshot of the Lead Triage dashboard. Submit a lead below and watch the
+          classification pipeline run in front of you. The full version classifies with the
+          OpenAI API (or deterministic demo mode) and stores everything in SQLite.
+        </p>
+      </div>
+
+      <!-- Container -->
+      <div class="bg-[#0b0d12] border border-[#242833] rounded-xl p-6 md:p-8 shadow-2xl">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-[11px] bg-gradient-to-br from-[#5eead4] to-[#a78bfa] flex items-center justify-center text-[#0a0a14] font-bold text-lg">L</div>
+            <div>
+              <div class="text-[#e6e8ed] text-lg font-bold">Lead Triage</div>
+              <div class="text-[#8a92a3] text-xs">GPT-powered lead classification and routing.</div>
+            </div>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[rgba(94,234,212,0.1)] border border-[rgba(94,234,212,0.2)] text-[#5eead4] font-mono text-[11px] font-semibold uppercase tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#5eead4]"></span>
+            demo mode
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-4 gap-3 mb-6">
+          <div class="bg-[#14161c] border border-[#242833] rounded-[10px] p-4">
+            <div class="text-[10px] uppercase tracking-widest text-[#8a92a3] font-semibold">Total</div>
+            <div class="font-mono text-2xl font-bold text-[#e6e8ed] mt-1" id="stat-total">5</div>
+          </div>
+          <div class="bg-[#14161c] border border-[#242833] rounded-[10px] p-4">
+            <div class="text-[10px] uppercase tracking-widest text-[#8a92a3] font-semibold">Hot</div>
+            <div class="font-mono text-2xl font-bold text-[#f472b6] mt-1" id="stat-hot">2</div>
+          </div>
+          <div class="bg-[#14161c] border border-[#242833] rounded-[10px] p-4">
+            <div class="text-[10px] uppercase tracking-widest text-[#8a92a3] font-semibold">Warm</div>
+            <div class="font-mono text-2xl font-bold text-[#fbbf24] mt-1" id="stat-warm">2</div>
+          </div>
+          <div class="bg-[#14161c] border border-[#242833] rounded-[10px] p-4">
+            <div class="text-[10px] uppercase tracking-widest text-[#8a92a3] font-semibold">Cold</div>
+            <div class="font-mono text-2xl font-bold text-[#60a5fa] mt-1" id="stat-cold">1</div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-[#14161c] border border-[#242833] rounded-xl p-5 mb-6">
+          <div class="text-[11px] uppercase tracking-widest text-[#8a92a3] font-semibold mb-3">New lead</div>
+          <form id="lead-form" class="grid grid-cols-2 gap-2.5" onsubmit="return false">
+            <input required id="f-name" placeholder="Name" class="bg-[#1a1d25] border border-[#242833] text-[#e6e8ed] px-3.5 py-2.5 rounded-md text-sm outline-none focus:border-[#5eead4]" />
+            <input required id="f-company" placeholder="Company" class="bg-[#1a1d25] border border-[#242833] text-[#e6e8ed] px-3.5 py-2.5 rounded-md text-sm outline-none focus:border-[#5eead4]" />
+            <input id="f-email" type="email" placeholder="Email" class="bg-[#1a1d25] border border-[#242833] text-[#e6e8ed] px-3.5 py-2.5 rounded-md text-sm outline-none focus:border-[#5eead4]" />
+            <select id="f-source" class="bg-[#1a1d25] border border-[#242833] text-[#e6e8ed] px-3.5 py-2.5 rounded-md text-sm outline-none focus:border-[#5eead4]">
+              <option>website</option>
+              <option>linkedin</option>
+              <option>referral</option>
+              <option>event</option>
+            </select>
+            <textarea required id="f-message" placeholder="What is the lead asking for?" rows="2" class="col-span-2 bg-[#1a1d25] border border-[#242833] text-[#e6e8ed] px-3.5 py-2.5 rounded-md text-sm outline-none focus:border-[#5eead4] resize-none"></textarea>
+            <div class="col-span-2 flex justify-between items-center">
+              <span class="text-[12px] text-[#575e6d] font-mono">runs fully in your browser</span>
+              <button type="button" onclick="classifyAndAdd()" class="bg-[#5eead4] text-[#0a0a14] font-semibold text-sm px-6 py-2.5 rounded-md hover:bg-[#7ef0dc] transition">Classify &amp; add</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Kanban -->
+        <div class="grid md:grid-cols-3 gap-4">
+          {cols.map((col) => (
+            <div class={`bg-[#14161c] border border-[#242833] rounded-xl p-4 col-${col}`} data-col={col}>
+              <div class="flex justify-between items-center mb-3 pb-3 border-b border-[#242833]">
+                <div class={`flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.12em] ${
+                  col === 'hot' ? 'text-[#f472b6]' : col === 'warm' ? 'text-[#fbbf24]' : 'text-[#60a5fa]'
+                }`}>
+                  <span class={`w-2 h-2 rounded-full ${
+                    col === 'hot' ? 'bg-[#f472b6]' : col === 'warm' ? 'bg-[#fbbf24]' : 'bg-[#60a5fa]'
+                  }`}></span>
+                  <span>{col}</span>
+                </div>
+                <span class={`font-mono text-[11px] text-[#575e6d] bg-[#1a1d25] px-2.5 py-0.5 rounded-full col-count-${col}`}>
+                  {seedLeads.filter((l) => l.priority === col).length}
+                </span>
+              </div>
+              <div class="col-body space-y-2" data-col-body={col}>
+                {seedLeads.filter((l) => l.priority === col).map((l) => (
+                  <div class={`bg-[#1a1d25] border border-[#242833] rounded-lg p-3.5 text-sm border-l-[3px] ${
+                    col === 'hot' ? 'border-l-[#f472b6]' : col === 'warm' ? 'border-l-[#fbbf24]' : 'border-l-[#60a5fa]'
+                  }`}>
+                    <div class="flex justify-between items-start mb-1.5">
+                      <div class="font-semibold text-[#e6e8ed]">{l.name}</div>
+                      <div class="font-mono text-[10px] text-[#5eead4] bg-[rgba(94,234,212,0.1)] px-2 py-0.5 rounded uppercase tracking-wider">{l.category}</div>
+                    </div>
+                    <div class="text-[12px] text-[#8a92a3] mb-2">{l.company}</div>
+                    <div class="text-[13px] text-[#e6e8ed] leading-relaxed mb-2">{l.summary}</div>
+                    <div class="bg-[rgba(94,234,212,0.08)] border-l-2 border-[#5eead4] px-2.5 py-2 rounded text-[12px] text-[#5eead4] mb-2">
+                      <div class="text-[9px] font-semibold uppercase tracking-wider text-[#8a92a3] mb-0.5">Next action</div>
+                      {l.action}
+                    </div>
+                    <div class="text-[11px] text-[#575e6d] italic">{l.reasoning}</div>
+                    <div class="mt-2 pt-2 border-t border-[#242833] text-[10px] text-[#575e6d] font-mono">via {l.source}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-ink-500 text-xs">
+        Fully functional in your browser. <a href="https://github.com/Mark1Anthony/lead-triage" target="_blank" class="text-accent-cyan hover:underline">See the source on GitHub</a> to run the FastAPI version locally.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Lightweight in-browser classifier (same logic as the Python demo mode)
+    const HOT_KEYWORDS = ['urgent','asap','deadline','budget','ready','decision','sign','contract','next week','tomorrow','q1','q2','q3','q4'];
+    const WARM_KEYWORDS = ['interested','exploring','evaluating','comparing','pricing','demo','trial','pilot','roadmap'];
+    const NEGATIONS = ['not','no','without','never'];
+    const CATEGORIES = ['SaaS','Agency','E-commerce','FinTech','Health','Manufacturing','Media','Retail','Consulting','Tech'];
+
+    function hasHotSignal(text: string): boolean {
+      const tokens = text.toLowerCase().match(/[a-z0-9]+/g) || [];
+      const set = new Set(tokens);
+      for (const k of HOT_KEYWORDS) {
+        if (k.includes(' ')) {
+          if (text.toLowerCase().includes(k)) return true;
+          continue;
+        }
+        if (!set.has(k)) continue;
+        const idx = tokens.indexOf(k);
+        if (idx > 0 && NEGATIONS.includes(tokens[idx - 1])) continue;
+        return true;
+      }
+      return false;
+    }
+
+    function hasWarmSignal(text: string): boolean {
+      const lower = text.toLowerCase();
+      return WARM_KEYWORDS.some((k) => {
+        const re = new RegExp('\\b' + k + '\\b');
+        return re.test(lower);
+      });
+    }
+
+    function classify(msg: string, company: string) {
+      const text = (company + ' ' + msg).toLowerCase();
+      let priority: 'hot' | 'warm' | 'cold';
+      if (hasHotSignal(text)) priority = 'hot';
+      else if (hasWarmSignal(text) || msg.length > 120) priority = 'warm';
+      else priority = 'cold';
+
+      const rngSeed = company + msg;
+      let h = 0;
+      for (const c of rngSeed) h = (h * 31 + c.charCodeAt(0)) | 0;
+      const category = CATEGORIES[Math.abs(h) % CATEGORIES.length];
+
+      const actions = {
+        hot:  'Call within 24h and send a calendar link.',
+        warm: 'Send a tailored pitch + case study by email.',
+        cold: 'Add to nurture sequence, check back in 2 weeks.',
+      };
+      const reasons = {
+        hot:  'Message contains urgency or buying signals.',
+        warm: 'Interested and exploratory, no hard buying signal yet.',
+        cold: 'Early-stage, vague or information-gathering lead.',
+      };
+      return {
+        priority,
+        category,
+        action: actions[priority],
+        reasoning: reasons[priority],
+      };
+    }
+
+    (window as any).classifyAndAdd = function () {
+      const name = (document.getElementById('f-name') as HTMLInputElement).value.trim();
+      const company = (document.getElementById('f-company') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('f-email') as HTMLInputElement).value.trim();
+      const source = (document.getElementById('f-source') as HTMLSelectElement).value;
+      const message = (document.getElementById('f-message') as HTMLTextAreaElement).value.trim();
+
+      if (!name || !company || !message) return;
+
+      const r = classify(message, company);
+      const colorMap: Record<string, string> = {
+        hot: '#f472b6',
+        warm: '#fbbf24',
+        cold: '#60a5fa',
+      };
+      const color = colorMap[r.priority];
+
+      const card = document.createElement('div');
+      card.className = 'bg-[#1a1d25] border border-[#242833] rounded-lg p-3.5 text-sm border-l-[3px]';
+      card.style.borderLeftColor = color;
+      card.innerHTML = `
+        <div class="flex justify-between items-start mb-1.5">
+          <div class="font-semibold text-[#e6e8ed]">${escapeHtml(name)}</div>
+          <div class="font-mono text-[10px] text-[#5eead4] bg-[rgba(94,234,212,0.1)] px-2 py-0.5 rounded uppercase tracking-wider">${r.category}</div>
+        </div>
+        <div class="text-[12px] text-[#8a92a3] mb-2">${escapeHtml(company)}${email ? ' · <span class="text-[#575e6d]">' + escapeHtml(email) + '</span>' : ''}</div>
+        <div class="text-[13px] text-[#e6e8ed] leading-relaxed mb-2">${escapeHtml(message)}</div>
+        <div class="bg-[rgba(94,234,212,0.08)] border-l-2 border-[#5eead4] px-2.5 py-2 rounded text-[12px] text-[#5eead4] mb-2">
+          <div class="text-[9px] font-semibold uppercase tracking-wider text-[#8a92a3] mb-0.5">Next action</div>
+          ${r.action}
+        </div>
+        <div class="text-[11px] text-[#575e6d] italic">${r.reasoning}</div>
+        <div class="mt-2 pt-2 border-t border-[#242833] text-[10px] text-[#575e6d] font-mono">via ${source}</div>
+      `;
+      card.style.animation = 'slideIn 0.35s ease-out';
+
+      const body = document.querySelector(`[data-col-body="${r.priority}"]`);
+      if (body) body.prepend(card);
+
+      // Update counts
+      updateStats();
+
+      // Clear form
+      (document.getElementById('f-name') as HTMLInputElement).value = '';
+      (document.getElementById('f-company') as HTMLInputElement).value = '';
+      (document.getElementById('f-email') as HTMLInputElement).value = '';
+      (document.getElementById('f-message') as HTMLTextAreaElement).value = '';
+    };
+
+    function updateStats() {
+      const bodies = document.querySelectorAll('[data-col-body]');
+      let total = 0;
+      bodies.forEach((body) => {
+        const col = body.getAttribute('data-col-body') as 'hot' | 'warm' | 'cold';
+        const n = body.children.length;
+        total += n;
+        const stat = document.getElementById(`stat-${col}`);
+        const count = document.querySelector(`.col-count-${col}`);
+        if (stat) stat.textContent = String(n);
+        if (count) count.textContent = String(n);
+      });
+      const statTotal = document.getElementById('stat-total');
+      if (statTotal) statTotal.textContent = String(total);
+    }
+
+    function escapeHtml(s: string): string {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+
+  <style>
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</Layout>

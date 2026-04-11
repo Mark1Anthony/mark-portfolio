@@ -1,0 +1,332 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Automation Pipeline — Live Demo" description="Watch a contact form submission run through AI triage, auto-reply, CRM push and team notification in real time.">
+
+  <a href="/#work" class="fixed top-6 left-6 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to portfolio
+  </a>
+
+  <div class="min-h-screen py-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="mb-14 text-center">
+        <span class="section-label mx-auto">Automation</span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 mb-5 leading-tight">
+          Form submitted.<br><span class="text-gradient">Everything after that — automatic.</span>
+        </h1>
+        <p class="text-ink-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          This is what runs behind a typical service-business site once the customer hits
+          <em>Send</em>. Fill out the form on the left and watch the pipeline work through every
+          step on the right.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+
+        <!-- Form side -->
+        <div class="glass rounded-2xl p-6 md:p-8">
+          <div class="flex items-center gap-2 mb-5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-teal flex items-center justify-center text-ink-950 font-bold text-sm">1</div>
+            <div>
+              <div class="font-display font-bold text-ink-50">Customer fills form</div>
+              <div class="text-ink-500 text-xs font-mono">on a typical service-business site</div>
+            </div>
+          </div>
+          <form id="auto-form" onsubmit="return false" class="space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <input required id="af-name" placeholder="Name" value="Anna Schmidt" class="bg-ink-900 border border-ink-700 text-ink-100 px-4 py-2.5 rounded-lg text-sm outline-none focus:border-accent-cyan placeholder:text-ink-600" />
+              <input required id="af-company" placeholder="Company (optional)" value="Schmidt Immobilien" class="bg-ink-900 border border-ink-700 text-ink-100 px-4 py-2.5 rounded-lg text-sm outline-none focus:border-accent-cyan placeholder:text-ink-600" />
+            </div>
+            <input required id="af-email" type="email" placeholder="Email" value="anna@schmidt-immobilien.de" class="w-full bg-ink-900 border border-ink-700 text-ink-100 px-4 py-2.5 rounded-lg text-sm outline-none focus:border-accent-cyan placeholder:text-ink-600" />
+            <input required id="af-phone" placeholder="Phone" value="+49 211 55512345" class="w-full bg-ink-900 border border-ink-700 text-ink-100 px-4 py-2.5 rounded-lg text-sm outline-none focus:border-accent-cyan placeholder:text-ink-600" />
+            <textarea required id="af-message" rows="4" class="w-full bg-ink-900 border border-ink-700 text-ink-100 px-4 py-2.5 rounded-lg text-sm outline-none focus:border-accent-cyan placeholder:text-ink-600 resize-none">We have 4 office buildings in Düsseldorf that need regular cleaning starting next month. Can you send us an offer this week? Budget is approved.</textarea>
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-[11px] text-ink-500 font-mono">edit the fields to try different inputs</span>
+              <button type="button" onclick="runPipeline()" class="btn-primary text-sm py-2.5 px-6">
+                Send form
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-6 pt-5 border-t border-white/5">
+            <div class="text-[10px] text-ink-500 font-mono uppercase tracking-widest mb-3">The real stack behind this</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">FastAPI</span>
+              <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">gpt-4o-mini</span>
+              <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Telegram Bot API</span>
+              <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Resend</span>
+              <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">SQLite / Postgres</span>
+              <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">n8n (optional glue)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline side -->
+        <div class="lg:sticky lg:top-8">
+          <div class="bg-[#0d1117] border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <div class="font-display font-bold text-ink-50">Live pipeline</div>
+                <div class="text-ink-500 text-xs font-mono">runs in your browser — no backend needed</div>
+              </div>
+              <div id="pipe-status" class="px-3 py-1 rounded-full bg-ink-800 border border-white/10 text-[10px] font-mono text-ink-500 uppercase tracking-wider">
+                idle
+              </div>
+            </div>
+
+            <div class="space-y-2" id="pipeline">
+              <div class="p-step p-3 rounded-lg border border-white/5 bg-ink-900/30" data-step="1">
+                <div class="flex items-start gap-3">
+                  <div class="step-ico flex-shrink-0 w-8 h-8 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center text-ink-500 transition-all text-xs font-mono font-bold">01</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2 mb-0.5">
+                      <div class="font-semibold text-sm text-ink-200 step-name">Form validated</div>
+                      <div class="text-[10px] font-mono text-ink-600 step-time">—</div>
+                    </div>
+                    <div class="text-xs text-ink-500 step-detail">Check required fields, spam filter, honeypot</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-step p-3 rounded-lg border border-white/5 bg-ink-900/30" data-step="2">
+                <div class="flex items-start gap-3">
+                  <div class="step-ico flex-shrink-0 w-8 h-8 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center text-ink-500 transition-all text-xs font-mono font-bold">02</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2 mb-0.5">
+                      <div class="font-semibold text-sm text-ink-200 step-name">AI triage</div>
+                      <div class="text-[10px] font-mono text-ink-600 step-time">—</div>
+                    </div>
+                    <div class="text-xs text-ink-500 step-detail">GPT classifies priority + category</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-step p-3 rounded-lg border border-white/5 bg-ink-900/30" data-step="3">
+                <div class="flex items-start gap-3">
+                  <div class="step-ico flex-shrink-0 w-8 h-8 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center text-ink-500 transition-all text-xs font-mono font-bold">03</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2 mb-0.5">
+                      <div class="font-semibold text-sm text-ink-200 step-name">Auto-reply sent</div>
+                      <div class="text-[10px] font-mono text-ink-600 step-time">—</div>
+                    </div>
+                    <div class="text-xs text-ink-500 step-detail">Tailored confirmation email in the customer's inbox</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-step p-3 rounded-lg border border-white/5 bg-ink-900/30" data-step="4">
+                <div class="flex items-start gap-3">
+                  <div class="step-ico flex-shrink-0 w-8 h-8 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center text-ink-500 transition-all text-xs font-mono font-bold">04</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2 mb-0.5">
+                      <div class="font-semibold text-sm text-ink-200 step-name">Owner notified</div>
+                      <div class="text-[10px] font-mono text-ink-600 step-time">—</div>
+                    </div>
+                    <div class="text-xs text-ink-500 step-detail">Telegram ping on your phone with one-line summary</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-step p-3 rounded-lg border border-white/5 bg-ink-900/30" data-step="5">
+                <div class="flex items-start gap-3">
+                  <div class="step-ico flex-shrink-0 w-8 h-8 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center text-ink-500 transition-all text-xs font-mono font-bold">05</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2 mb-0.5">
+                      <div class="font-semibold text-sm text-ink-200 step-name">Lead stored</div>
+                      <div class="text-[10px] font-mono text-ink-600 step-time">—</div>
+                    </div>
+                    <div class="text-xs text-ink-500 step-detail">CRM / database entry with all the context</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-step p-3 rounded-lg border border-white/5 bg-ink-900/30" data-step="6">
+                <div class="flex items-start gap-3">
+                  <div class="step-ico flex-shrink-0 w-8 h-8 rounded-lg bg-ink-800 border border-white/10 flex items-center justify-center text-ink-500 transition-all text-xs font-mono font-bold">06</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2 mb-0.5">
+                      <div class="font-semibold text-sm text-ink-200 step-name">Calendar slot blocked</div>
+                      <div class="text-[10px] font-mono text-ink-600 step-time">—</div>
+                    </div>
+                    <div class="text-xs text-ink-500 step-detail">Follow-up call automatically added to your calendar</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="phone-notification" class="mt-5 opacity-0 transform translate-y-4 transition-all duration-500">
+            <div class="text-ink-500 font-mono text-[10px] uppercase tracking-widest mb-2 ml-2">📱 On your phone</div>
+            <div class="bg-ink-900 border border-white/10 rounded-2xl p-4 shadow-xl">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0088cc] to-[#0077b5] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.05-.19-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <div class="text-ink-100 text-sm font-semibold">Telegram · Website Bot</div>
+                    <div class="text-ink-600 text-[10px]">now</div>
+                  </div>
+                  <div class="text-ink-300 text-sm mt-0.5" id="notif-text">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Value props -->
+      <div class="mt-20 grid md:grid-cols-2 gap-5">
+        <div class="glass rounded-2xl p-7">
+          <div class="text-accent-cyan font-mono text-[10px] uppercase tracking-widest mb-3">For business owners</div>
+          <h3 class="font-display font-bold text-xl text-ink-50 mb-3">Sleep at night.</h3>
+          <p class="text-ink-300 text-sm leading-relaxed">
+            No more checking email at 11pm to see if a hot lead came in. Your phone pings when it
+            matters. The customer already got an on-brand reply. The lead is in your CRM. Your
+            calendar has the follow-up blocked. You wake up, scroll your phone once, and you know
+            what's on for today.
+          </p>
+        </div>
+        <div class="glass rounded-2xl p-7">
+          <div class="text-accent-cyan font-mono text-[10px] uppercase tracking-widest mb-3">For engineers</div>
+          <h3 class="font-display font-bold text-xl text-ink-50 mb-3">The stack is real.</h3>
+          <p class="text-ink-300 text-sm leading-relaxed">
+            FastAPI endpoint per site, OpenAI <code class="text-accent-cyan font-mono text-xs">gpt-4o-mini</code>
+            for classification, Telegram Bot API for notifications, Resend for transactional email,
+            SQLite or Postgres for storage, n8n for the glue when it's needed. Production-tested,
+            no magic, no low-code surprises.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .p-step.active {
+      border-color: rgba(94, 234, 212, 0.4);
+      background: rgba(94, 234, 212, 0.08);
+    }
+    .p-step.active .step-ico {
+      background: linear-gradient(135deg, #5eead4, #22d3ee);
+      border-color: #5eead4;
+      color: #0a0a14;
+      box-shadow: 0 0 20px rgba(94, 234, 212, 0.4);
+    }
+    .p-step.active .step-name { color: #f5f5fa; }
+    .p-step.active .step-time { color: #5eead4; }
+    .p-step.pending .step-ico svg { animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #phone-notification.show { opacity: 1; transform: translateY(0); }
+  </style>
+
+  <script>
+    const steps = Array.from(document.querySelectorAll<HTMLElement>('.p-step'));
+    const statusEl = document.getElementById('pipe-status') as HTMLElement;
+    const notifWrap = document.getElementById('phone-notification') as HTMLElement;
+    const notifText = document.getElementById('notif-text') as HTMLElement;
+
+    function classify(msg: string, company: string) {
+      const text = (company + ' ' + msg).toLowerCase();
+      const HOT = ['urgent','asap','deadline','budget','ready','contract','next week','next month','tomorrow','this week','approved','sign'];
+      const NEGS = ['not','no','never','without'];
+      const tokens = text.match(/[a-z0-9]+/g) || [];
+      const set = new Set(tokens);
+      let hot = false;
+      for (const k of HOT) {
+        if (k.includes(' ')) { if (text.includes(k)) { hot = true; break; } continue; }
+        if (!set.has(k)) continue;
+        const i = tokens.indexOf(k);
+        if (i > 0 && NEGS.includes(tokens[i - 1])) continue;
+        hot = true; break;
+      }
+      if (hot) return { priority: 'HOT', label: 'Hot lead — act today' };
+      const warmKw = ['interested','exploring','evaluating','demo','pricing','trial','offer','quote','comparing'];
+      if (warmKw.some((k) => new RegExp('\\b' + k + '\\b').test(text))) {
+        return { priority: 'WARM', label: 'Warm — follow up this week' };
+      }
+      if (msg.length > 120) return { priority: 'WARM', label: 'Warm — follow up this week' };
+      return { priority: 'COLD', label: 'Cold — add to nurture list' };
+    }
+
+    function setStep(n: number, state: 'pending' | 'active' | 'reset', time?: string, detail?: string) {
+      const s = steps[n - 1];
+      if (!s) return;
+      s.classList.remove('pending', 'active');
+      if (state === 'reset') return;
+      s.classList.add(state);
+      if (time) {
+        const t = s.querySelector('.step-time') as HTMLElement;
+        if (t) t.textContent = time;
+      }
+      if (detail) {
+        const d = s.querySelector('.step-detail') as HTMLElement;
+        if (d) d.textContent = detail;
+      }
+    }
+
+    function setStatus(label: string, color: string) {
+      statusEl.textContent = label;
+      statusEl.style.color = color;
+      statusEl.style.borderColor = color + '66';
+      statusEl.style.background = color + '1a';
+    }
+
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const now = () => new Date().toLocaleTimeString('en-GB');
+
+    (window as any).runPipeline = async function () {
+      const name = (document.getElementById('af-name') as HTMLInputElement).value.trim();
+      const company = (document.getElementById('af-company') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('af-email') as HTMLInputElement).value.trim();
+      const message = (document.getElementById('af-message') as HTMLTextAreaElement).value.trim();
+      if (!name || !email || !message) return;
+
+      steps.forEach((s) => s.classList.remove('active', 'pending'));
+      steps.forEach((s) => {
+        const t = s.querySelector('.step-time') as HTMLElement;
+        if (t) t.textContent = '—';
+      });
+      notifWrap.classList.remove('show');
+      setStatus('running', '#fbbf24');
+
+      setStep(1, 'pending', now(), 'Checking required fields...');
+      await sleep(300);
+      setStep(1, 'active', now(), '✓ Valid submission, not spam');
+
+      setStep(2, 'pending', now(), 'Calling gpt-4o-mini...');
+      await sleep(800);
+      const result = classify(message, company);
+      setStep(2, 'active', now(), `Classified: ${result.priority} — ${result.label}`);
+
+      setStep(3, 'pending', now(), `Composing email to ${email}...`);
+      await sleep(500);
+      setStep(3, 'active', now(), `✓ Confirmation sent (subject: "Thanks for your message, ${name.split(' ')[0]}")`);
+
+      setStep(4, 'pending', now(), 'Pushing to Telegram Bot API...');
+      await sleep(400);
+      setStep(4, 'active', now(), '✓ Push delivered');
+
+      const firstName = name.split(' ')[0];
+      const preview = message.length > 60 ? message.slice(0, 57) + '...' : message;
+      notifText.innerHTML = `<strong class="text-accent-cyan">[${result.priority}]</strong> New lead from <strong class="text-ink-100">${firstName}</strong> (${company || 'private'}): "${preview}"`;
+      notifWrap.classList.add('show');
+
+      setStep(5, 'pending', now(), 'INSERT INTO leads...');
+      await sleep(350);
+      setStep(5, 'active', now(), `✓ Lead #482 stored in CRM`);
+
+      setStep(6, 'pending', now(), 'Creating calendar event...');
+      await sleep(400);
+      const when = result.priority === 'HOT' ? 'today 16:00' : result.priority === 'WARM' ? 'tomorrow 10:00' : 'next Monday 14:00';
+      setStep(6, 'active', now(), `✓ Follow-up call blocked for ${when}`);
+
+      setStatus('done', '#34d399');
+    };
+  </script>
+</Layout>

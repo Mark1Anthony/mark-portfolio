@@ -1,0 +1,276 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Drift — Mark Amaechi" description="An interactive generative flow field particle system.">
+
+  <a href="/" class="fixed top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back
+  </a>
+
+  <!-- Info panel -->
+  <div class="fixed top-6 right-6 z-20 backdrop-blur-md bg-black/50 border border-white/10 rounded-2xl p-5 max-w-[280px] text-sm">
+    <div class="flex items-center gap-2 mb-2">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-violet flex items-center justify-center text-ink-950 font-bold text-sm">D</div>
+      <h1 class="font-display font-bold text-lg text-ink-50">Drift</h1>
+    </div>
+    <p class="text-ink-400 text-xs leading-relaxed mb-4">
+      A flow field. Thousands of particles moving through a Perlin noise vector field, leaving glowing trails.
+    </p>
+    <div class="space-y-1.5 text-xs text-ink-300 font-mono">
+      <div class="flex justify-between"><span class="text-ink-500">Mouse</span><span>push particles</span></div>
+      <div class="flex justify-between"><span class="text-ink-500">Click</span><span>reseed field</span></div>
+      <div class="flex justify-between"><span class="text-ink-500">Space</span><span>pause / play</span></div>
+      <div class="flex justify-between"><span class="text-ink-500">1-5</span><span>change palette</span></div>
+      <div class="flex justify-between"><span class="text-ink-500">C</span><span>clear canvas</span></div>
+    </div>
+    <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] text-ink-500 font-mono uppercase tracking-wider">
+      <span>Palette</span>
+      <span id="palette-name" class="text-accent-cyan">Aurora</span>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="fixed bottom-6 left-6 z-20 backdrop-blur-md bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[11px] font-mono text-ink-400 flex items-center gap-6">
+    <span><span class="text-accent-cyan">●</span> <span id="particle-count">0</span> particles</span>
+    <span><span class="text-ink-500">fps</span> <span id="fps">0</span></span>
+    <span><span class="text-ink-500">state</span> <span id="state" class="text-accent-cyan">running</span></span>
+  </div>
+
+  <!-- Canvas -->
+  <canvas id="drift-canvas" class="fixed inset-0 w-full h-full bg-ink-950"></canvas>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════
+    //  DRIFT — Generative flow field particle system
+    //  Particles sample a Perlin-like noise field and follow its
+    //  vector at each step, leaving glowing trails.
+    // ═══════════════════════════════════════════════════════════════
+
+    const canvas = document.getElementById('drift-canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    let W = 0, H = 0;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = '#0a0a14';
+      ctx.fillRect(0, 0, W, H);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // ─── Palettes ───
+    interface Palette {
+      name: string;
+      colors: string[];
+      bg: string;
+    }
+    const palettes: Palette[] = [
+      { name: 'Aurora',   colors: ['#5eead4', '#22d3ee', '#a78bfa', '#f472b6'], bg: '#0a0a14' },
+      { name: 'Ember',    colors: ['#fbbf24', '#f97316', '#ef4444', '#be185d'], bg: '#14060a' },
+      { name: 'Abyss',    colors: ['#22d3ee', '#60a5fa', '#818cf8', '#4c1d95'], bg: '#050814' },
+      { name: 'Bloom',    colors: ['#86efac', '#4ade80', '#10b981', '#14b8a6'], bg: '#020f0a' },
+      { name: 'Mono',     colors: ['#f5f5fa', '#9d9dbd', '#4e4e73', '#13131f'], bg: '#050508' },
+    ];
+    let paletteIdx = 0;
+
+    // ─── Fast value noise (not true Perlin but close enough) ───
+    //  We build a random grid and smoothly interpolate between cells.
+    let seed = Math.random() * 1000;
+    let grid: number[][] = [];
+    const G = 40; // grid cell size in px
+
+    function buildGrid() {
+      const cols = Math.ceil(W / G) + 2;
+      const rows = Math.ceil(H / G) + 2;
+      grid = [];
+      for (let y = 0; y < rows; y++) {
+        grid[y] = [];
+        for (let x = 0; x < cols; x++) {
+          // Pseudo-random value derived from coords + seed
+          const s = Math.sin(x * 12.9898 + y * 78.233 + seed) * 43758.5453;
+          grid[y][x] = (s - Math.floor(s)) * Math.PI * 4;
+        }
+      }
+    }
+    buildGrid();
+    window.addEventListener('resize', buildGrid);
+
+    // Smooth interpolation (cosine-ease)
+    function smooth(t: number) { return t * t * (3 - 2 * t); }
+
+    function fieldAngle(x: number, y: number): number {
+      const gx = x / G;
+      const gy = y / G;
+      const xi = Math.floor(gx);
+      const yi = Math.floor(gy);
+      const fx = smooth(gx - xi);
+      const fy = smooth(gy - yi);
+      // Clamp indices
+      const cols = grid[0]?.length || 0;
+      const rows = grid.length;
+      if (xi < 0 || yi < 0 || xi >= cols - 1 || yi >= rows - 1) return 0;
+      const a = grid[yi][xi];
+      const b = grid[yi][xi + 1];
+      const c = grid[yi + 1][xi];
+      const d = grid[yi + 1][xi + 1];
+      const ab = a + (b - a) * fx;
+      const cd = c + (d - c) * fx;
+      return ab + (cd - ab) * fy;
+    }
+
+    // ─── Particles ───
+    interface Particle {
+      x: number; y: number;
+      vx: number; vy: number;
+      color: string;
+      life: number;
+    }
+    const particles: Particle[] = [];
+    const TARGET_PARTICLES = 900;
+
+    function pickColor(): string {
+      const p = palettes[paletteIdx];
+      return p.colors[(Math.random() * p.colors.length) | 0];
+    }
+
+    function spawnParticle(x?: number, y?: number): Particle {
+      return {
+        x: x ?? Math.random() * W,
+        y: y ?? Math.random() * H,
+        vx: 0,
+        vy: 0,
+        color: pickColor(),
+        life: 200 + Math.random() * 400,
+      };
+    }
+
+    for (let i = 0; i < TARGET_PARTICLES; i++) particles.push(spawnParticle());
+
+    // ─── Input ───
+    const mouse = { x: -9999, y: -9999, down: false };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = -9999; mouse.y = -9999;
+    });
+    canvas.addEventListener('click', () => {
+      seed = Math.random() * 1000;
+      buildGrid();
+    });
+
+    let paused = false;
+    const stateEl = document.getElementById('state')!;
+    const paletteNameEl = document.getElementById('palette-name')!;
+    const particleCountEl = document.getElementById('particle-count')!;
+    const fpsEl = document.getElementById('fps')!;
+    paletteNameEl.textContent = palettes[paletteIdx].name;
+    particleCountEl.textContent = TARGET_PARTICLES.toString();
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === ' ') {
+        e.preventDefault();
+        paused = !paused;
+        stateEl.textContent = paused ? 'paused' : 'running';
+        stateEl.className = paused ? 'text-amber-400' : 'text-accent-cyan';
+      }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= palettes.length) {
+        paletteIdx = n - 1;
+        paletteNameEl.textContent = palettes[paletteIdx].name;
+        // Recolor particles gradually
+        for (const p of particles) p.color = pickColor();
+        // Reset background to new palette's bg
+        ctx.fillStyle = palettes[paletteIdx].bg;
+        ctx.fillRect(0, 0, W, H);
+      }
+      if (e.key === 'c' || e.key === 'C') {
+        ctx.fillStyle = palettes[paletteIdx].bg;
+        ctx.fillRect(0, 0, W, H);
+      }
+    });
+
+    // ─── Main loop ───
+    let lastFrame = performance.now();
+    let fpsAccum = 0;
+    let fpsCount = 0;
+
+    function tick(now: number) {
+      const dt = now - lastFrame;
+      lastFrame = now;
+      fpsAccum += dt;
+      fpsCount++;
+      if (fpsAccum > 500) {
+        const fps = Math.round(1000 / (fpsAccum / fpsCount));
+        fpsEl.textContent = fps.toString();
+        fpsAccum = 0;
+        fpsCount = 0;
+      }
+
+      if (!paused) {
+        // Subtle fade trail — creates the ghosting / long trails
+        ctx.fillStyle = 'rgba(10, 10, 20, 0.03)';
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.globalCompositeOperation = 'lighter';
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const a = fieldAngle(p.x, p.y);
+          p.vx += Math.cos(a) * 0.12;
+          p.vy += Math.sin(a) * 0.12;
+
+          // Mouse repel
+          const ddx = p.x - mouse.x;
+          const ddy = p.y - mouse.y;
+          const d2 = ddx * ddx + ddy * ddy;
+          if (d2 < 140 * 140 && d2 > 0.01) {
+            const d = Math.sqrt(d2);
+            const f = (140 - d) / 140;
+            p.vx += (ddx / d) * f * 1.5;
+            p.vy += (ddy / d) * f * 1.5;
+          }
+
+          // Damping
+          p.vx *= 0.94;
+          p.vy *= 0.94;
+
+          const nx = p.x + p.vx;
+          const ny = p.y + p.vy;
+
+          // Draw segment (the trail)
+          ctx.strokeStyle = p.color;
+          ctx.globalAlpha = 0.6;
+          ctx.lineWidth = 0.9;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(nx, ny);
+          ctx.stroke();
+
+          p.x = nx;
+          p.y = ny;
+          p.life--;
+
+          // Respawn if dead or out of bounds
+          if (p.life <= 0 || p.x < -40 || p.x > W + 40 || p.y < -40 || p.y > H + 40) {
+            particles[i] = spawnParticle();
+          }
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 1;
+      }
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</Layout>

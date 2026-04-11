@@ -1,0 +1,168 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const sites = [
+  {
+    name: 'Krüger Dachdeckermeister',
+    tagline: 'Hamburg · Roofing contractor',
+    description:
+      'Premium onepager for a family-run master roofing business. Warm clay palette, bold serif display typography, real service breakdown, references, inline booking form. Built without a single stock photo.',
+    url: 'https://krueger-dach-demo.netlify.app',
+    tech: ['HTML', 'Tailwind CDN', 'Vanilla JS'],
+    highlights: ['Hero with trust badges', '6 service cards', 'Inline booking', 'References gallery'],
+    color: 'from-amber-500/25 via-orange-500/15 to-red-500/20',
+    border: 'border-orange-500/30',
+    accent: '#e67f5a',
+  },
+  {
+    name: 'Strahlkraft Gebäudereinigung',
+    tagline: 'Hamburg · Cleaning service',
+    description:
+      'Clean, airy single-page site for a cleaning company. Fresh teal palette, floating badges, 6 services, testimonials, sector coverage. Feels professional without being boring — the opposite of a 2010 SME website.',
+    url: 'https://strahlkraft-clean-demo.netlify.app',
+    tech: ['HTML', 'Tailwind CDN', 'Vanilla JS'],
+    highlights: ['Floating hero cards', 'Sector coverage grid', '3 testimonials', 'Mobile-first'],
+    color: 'from-teal-500/25 via-cyan-500/15 to-emerald-500/20',
+    border: 'border-teal-500/30',
+    accent: '#17b5a0',
+  },
+  {
+    name: 'Glanz & Klar GmbH',
+    tagline: 'Düsseldorf · Premium service business',
+    description:
+      'Full multi-page site built with Astro + Tailwind + TypeScript. Homepage, service detail pages, private admin dashboard, automation demo and impressum/privacy pages. The most complete example — this is what a real production build looks like.',
+    url: 'https://glanz-klar-demo.netlify.app',
+    tech: ['Astro 5', 'Tailwind', 'TypeScript'],
+    highlights: ['Multi-page structure', 'Admin dashboard', 'Service detail pages', 'Full legal pages'],
+    color: 'from-blue-500/25 via-indigo-500/15 to-violet-500/20',
+    border: 'border-blue-500/30',
+    accent: '#60a5fa',
+  },
+];
+
+const features = [
+  { icon: 'phone',     title: 'Mobile-first',      desc: 'Designed for phones first — the smaller screen is where your customers actually look.' },
+  { icon: 'speed',     title: 'Fast loading',      desc: 'No heavy frameworks where they are not needed. Sub-second loads even on slow connections.' },
+  { icon: 'design',    title: 'No stock photos',   desc: 'Every visual is built with CSS, SVG or custom art. No generic agency vibe.' },
+  { icon: 'form',      title: 'Real contact forms', desc: 'Connected to email or webhooks. When someone fills it out, it actually goes somewhere.' },
+  { icon: 'seo',       title: 'SEO-ready',         desc: 'Proper meta tags, Open Graph, semantic HTML, Schema.org data for local businesses.' },
+  { icon: 'a11y',      title: 'Accessible',        desc: 'Keyboard-navigable, screen-reader-friendly, proper contrast, reduced-motion support.' },
+];
+---
+
+<Layout title="Websites for Local Businesses — Mark Amaechi" description="Three deployed websites I built for service businesses. Click any of them to open the live version.">
+
+  <a href="/#work" class="fixed top-6 left-6 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    Back to portfolio
+  </a>
+
+  <div class="min-h-screen py-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="mb-16 text-center">
+        <span class="section-label mx-auto">Client work</span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 mb-5 leading-tight">
+          Real websites.<br><span class="text-gradient">Real businesses.</span>
+        </h1>
+        <p class="text-ink-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          Three deployed sites I built for service businesses. Each one is live right now — click
+          the card to open it in a new tab.
+        </p>
+      </div>
+
+      <!-- Site cards -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        {sites.map((s) => (
+          <a href={s.url} target="_blank" rel="noopener" class="group block">
+            <div class={`glass rounded-2xl overflow-hidden border ${s.border} hover:scale-[1.015] transition-all duration-500 h-full flex flex-col`}>
+              <!-- Browser chrome -->
+              <div class="bg-[#e6e6eb] px-3 py-2 flex items-center gap-1.5 flex-shrink-0">
+                <span class="w-2 h-2 rounded-full bg-[#ff5f57]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#febc2e]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#28c840]"></span>
+                <div class="flex-1 text-center text-[9px] text-gray-500 font-mono truncate px-2">{s.url.replace('https://', '')}</div>
+              </div>
+              <!-- Preview -->
+              <div class={`h-48 bg-gradient-to-br ${s.color} relative overflow-hidden border-b border-white/5 flex items-center justify-center`}>
+                <div class="text-center px-6 relative z-10">
+                  <div class="text-ink-50 font-display font-bold text-2xl mb-1.5">{s.name}</div>
+                  <div class="text-ink-300 text-[11px] font-mono uppercase tracking-wider">{s.tagline}</div>
+                </div>
+                <div class="absolute bottom-3 right-4 inline-flex items-center gap-1.5 text-[10px] text-ink-100 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                  <span class="w-1 h-1 rounded-full bg-green-400 animate-pulse"></span>
+                  <span>Live</span>
+                </div>
+              </div>
+              <!-- Info -->
+              <div class="p-6 flex-1 flex flex-col">
+                <p class="text-ink-300 text-sm leading-relaxed mb-4 flex-1">{s.description}</p>
+
+                <div class="mb-4">
+                  <div class="text-[10px] text-ink-500 font-mono uppercase tracking-wider mb-2">What's inside</div>
+                  <div class="grid grid-cols-2 gap-1 text-[11px] text-ink-400">
+                    {s.highlights.map((h) => (
+                      <div class="flex items-center gap-1.5">
+                        <svg class="w-3 h-3 text-accent-cyan flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  {s.tech.map((t) => (
+                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-ink-800/60 border border-ink-700/40 text-ink-400">{t}</span>
+                  ))}
+                </div>
+
+                <div class="inline-flex items-center gap-2 text-accent-cyan text-sm font-semibold group-hover:gap-3 transition-all mt-auto">
+                  <span>Open live site</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- What they all share -->
+      <div class="mb-8 text-center">
+        <span class="section-label mx-auto">What every site includes</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mt-6 mb-4 leading-tight">
+          The basics,<br><span class="text-gradient">actually done right.</span>
+        </h2>
+        <p class="text-ink-400 text-sm max-w-xl mx-auto leading-relaxed">
+          Every site I build ships with the same baseline. No missing essentials, no
+          "we will add that later".
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        {features.map((f) => (
+          <div class="glass rounded-xl p-5 hover:border-accent-cyan/30 transition-colors duration-300">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-cyan/20 to-accent-violet/20 border border-accent-cyan/30 flex items-center justify-center mb-3 text-accent-cyan">
+              {f.icon === 'phone' && (<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>)}
+              {f.icon === 'speed' && (<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>)}
+              {f.icon === 'design' && (<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm5.25 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75z"/></svg>)}
+              {f.icon === 'form' && (<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>)}
+              {f.icon === 'seo' && (<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>)}
+              {f.icon === 'a11y' && (<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>)}
+            </div>
+            <h3 class="font-display font-bold text-ink-50 text-base mb-1.5">{f.title}</h3>
+            <p class="text-ink-400 text-xs leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Little note -->
+      <div class="text-center">
+        <p class="text-ink-500 text-sm max-w-xl mx-auto">
+          Interested in a site like this for your own business? <a href="/#contact" class="text-accent-cyan hover:underline">Drop me a line</a> — or keep scrolling the portfolio.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
