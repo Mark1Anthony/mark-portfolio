@@ -2,68 +2,142 @@
 import Layout from '../../../layouts/Layout.astro';
 ---
 
-<Layout title="DealFlow CRM — Live Demo" description="Full-stack CRM with auth, Kanban pipeline, contacts and activities. Built with Next.js 15 + Supabase.">
+<Layout title="DealFlow CRM — Project Details" description="Full-stack CRM with auth, Kanban pipeline, contacts and activities. Built with Next.js 15 + Supabase.">
 
   <a href="/mark-portfolio/#work" class="fixed top-6 left-6 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
     Back to portfolio
   </a>
 
-  <div class="min-h-screen flex items-center justify-center px-4 py-20">
-    <div class="max-w-lg text-center">
+  <div class="min-h-screen py-20 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto">
 
-      <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-2xl mb-6">D</div>
+      <!-- Header -->
+      <div class="text-center mb-14">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-2xl mb-6">D</div>
+        <span class="section-label mx-auto">Project</span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl mt-4 mb-4">DealFlow CRM</h1>
+        <p class="text-ink-400 text-lg max-w-2xl mx-auto">
+          A full-stack CRM application with real authentication, database, and deployment.
+          Not a mockup. Not a simulation. A working app you can sign up for and use.
+        </p>
+      </div>
 
-      <h1 class="font-display font-bold text-3xl md:text-4xl text-ink-50 mb-4">DealFlow CRM</h1>
-
-      <p class="text-ink-400 text-base leading-relaxed mb-8">
-        A full-stack CRM with real authentication, PostgreSQL database with Row Level Security,
-        drag-and-drop Kanban pipeline, contact management and activity tracking.
-        Built with Next.js 15, Supabase and TypeScript.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
-        <a href="https://dealflow-crm-eta.vercel.app" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-6 inline-flex items-center justify-center gap-2">
-          Open live app
+      <!-- CTA -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-16">
+        <a href="https://dealflow-crm-eta.vercel.app/demo" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-8 inline-flex items-center justify-center gap-2">
+          Try the live demo
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
         </a>
-        <a href="https://github.com/Mark1Anthony/dealflow-crm" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 text-ink-400 text-sm font-medium hover:text-accent-cyan transition py-3 px-6 border border-white/10 rounded-full hover:border-accent-cyan/30">
+        <a href="https://github.com/Mark1Anthony/dealflow-crm" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 text-ink-400 text-sm font-medium hover:text-accent-cyan transition py-3 px-8 border border-white/10 rounded-full hover:border-accent-cyan/30">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          View source
+          View source code
         </a>
       </div>
 
-      <div class="glass rounded-2xl p-6 text-left">
-        <div class="text-ink-500 font-mono text-[10px] uppercase tracking-widest mb-4">How to try it</div>
-        <ol class="space-y-3 text-sm text-ink-300">
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
-            <span>Click <strong class="text-ink-100">Open live app</strong> above</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
-            <span>Sign up with any email and password (no confirmation needed)</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
-            <span>Click <strong class="text-ink-100">Load demo data</strong> to populate the app</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
-            <span>Try dragging deals between pipeline stages, creating contacts, logging activities</span>
-          </li>
-        </ol>
+      <!-- Why I built this -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4">Why I built this</h2>
+        <p class="text-ink-300 text-sm leading-relaxed mb-4">
+          Most portfolio projects are frontend demos that simulate data in the browser.
+          They look impressive at first glance but fall apart when you check the code.
+          No database, no auth, no real CRUD operations.
+        </p>
+        <p class="text-ink-300 text-sm leading-relaxed">
+          DealFlow is different. It has a real PostgreSQL database with 7 tables.
+          Real authentication where you sign up with an email and password.
+          Row Level Security so one user can never see another user's data.
+          Server Actions that validate input with Zod, write to the database, and revalidate the page.
+          45 passing tests and CI that runs on every push.
+        </p>
       </div>
 
-      <div class="mt-8 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Next.js 15</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">TypeScript</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Supabase Auth</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">PostgreSQL + RLS</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Server Actions</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Tailwind CSS</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Zod</span>
-        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Vitest</span>
+      <!-- What it does -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4">What the app does</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+            </div>
+            <div><div class="text-ink-100 text-sm font-semibold">Contacts</div><div class="text-ink-400 text-xs">Create, edit, search, delete. With company, email, phone, notes.</div></div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"/></svg>
+            </div>
+            <div><div class="text-ink-100 text-sm font-semibold">Kanban Pipeline</div><div class="text-ink-400 text-xs">Drag deals between stages. Lead, Qualified, Proposal, Won, Lost.</div></div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625z"/></svg>
+            </div>
+            <div><div class="text-ink-100 text-sm font-semibold">Dashboard</div><div class="text-ink-400 text-xs">KPIs, pipeline overview, recent activity feed.</div></div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div><div class="text-ink-100 text-sm font-semibold">Activities</div><div class="text-ink-400 text-xs">Log calls, emails, meetings, tasks. Filter by type.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech decisions -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4">Tech decisions</h2>
+        <div class="space-y-4 text-sm">
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Next.js 15</span><span class="text-ink-300">Server Components + Server Actions. No separate API layer needed for CRUD. Forms submit directly to server functions.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Supabase Auth</span><span class="text-ink-300">Email/password auth with cookie-based sessions. Middleware guards every route. No token management in the frontend.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">PostgreSQL + RLS</span><span class="text-ink-300">7 tables with Row Level Security. Every query is automatically scoped to the authenticated user. No data leaks possible at the DB level.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Zod</span><span class="text-ink-300">Runtime validation on every form submission. Types inferred from schemas, so the frontend and backend always agree on the shape of data.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">@hello-pangea/dnd</span><span class="text-ink-300">Kanban drag-and-drop with optimistic updates. If the server call fails, the UI rolls back to the previous state.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Vitest</span><span class="text-ink-300">45 passing tests covering validation schemas and utility functions. CI runs typecheck + tests + build on every push.</span></div>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4">Architecture</h2>
+        <pre class="text-ink-400 text-xs font-mono leading-relaxed overflow-x-auto">src/
+├── app/
+│   ├── (auth)/login/          Login/Signup
+│   ├── (app)/                 Authenticated routes
+│   │   ├── dashboard/         KPIs + pipeline + activity feed
+│   │   ├── contacts/          List, detail, create, edit
+│   │   ├── deals/             Kanban board, detail, create, edit
+│   │   ├── activities/        Filterable activity feed
+│   │   └── settings/          Pipeline stage editor
+│   └── api/                   PATCH endpoint for Kanban drag
+├── components/                UI components (Sidebar, Kanban, Forms)
+├── lib/
+│   ├── queries/               Server-side data fetching
+│   ├── actions/               Server Actions for mutations
+│   ├── types.ts               TypeScript interfaces
+│   └── validation.ts          Zod schemas
+└── middleware.ts              Auth guard</pre>
+      </div>
+
+      <!-- Database -->
+      <div class="glass rounded-2xl p-8 mb-12">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4">Database</h2>
+        <p class="text-ink-400 text-sm mb-4">7 tables with foreign keys, CHECK constraints, indexes, and RLS policies on every table.</p>
+        <pre class="text-ink-400 text-xs font-mono leading-relaxed">pipeline_stages  ←──  deals  ──→  contacts
+                        │              │
+                      notes          notes
+                        │              │
+                    activities     activities
+                                      │
+                                 contact_tags  ──→  tags</pre>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="text-center">
+        <a href="https://dealflow-crm-eta.vercel.app/demo" target="_blank" rel="noopener" class="btn-primary text-base py-4 px-10 inline-flex items-center justify-center gap-2">
+          Try the live demo
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+        <p class="text-ink-500 text-xs mt-4">No sign-up needed. Demo account is created automatically.</p>
       </div>
 
     </div>
