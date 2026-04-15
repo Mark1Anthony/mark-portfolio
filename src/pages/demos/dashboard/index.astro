@@ -2,432 +2,71 @@
 import Layout from '../../../layouts/Layout.astro';
 ---
 
-<Layout title="Business Dashboard — Live Demo" description="Interactive analytics dashboard with KPIs, charts, filters and real-time data visualization.">
+<Layout title="DealFlow CRM — Live Demo" description="Full-stack CRM with auth, Kanban pipeline, contacts and activities. Built with Next.js 15 + Supabase.">
 
   <a href="/mark-portfolio/#work" class="fixed top-6 left-6 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
     Back to portfolio
   </a>
 
-  <div class="min-h-screen bg-[#0c0d12]" id="dash-app">
+  <div class="min-h-screen flex items-center justify-center px-4 py-20">
+    <div class="max-w-lg text-center">
 
-    <!-- Sidebar -->
-    <aside class="fixed left-0 top-0 bottom-0 w-[220px] bg-[#111218] border-r border-white/5 flex flex-col z-30 hidden lg:flex">
-      <div class="p-5 border-b border-white/5">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-sm">A</div>
-          <div>
-            <div class="text-ink-50 font-bold text-sm">Analytics</div>
-            <div class="text-ink-500 text-[10px]">Business Dashboard</div>
-          </div>
-        </div>
-      </div>
-      <nav class="flex-1 p-3 space-y-0.5">
-        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/5 text-ink-50 text-sm font-medium">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z"/></svg>
-          Overview
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-2xl mb-6">D</div>
+
+      <h1 class="font-display font-bold text-3xl md:text-4xl text-ink-50 mb-4">DealFlow CRM</h1>
+
+      <p class="text-ink-400 text-base leading-relaxed mb-8">
+        A full-stack CRM with real authentication, PostgreSQL database with Row Level Security,
+        drag-and-drop Kanban pipeline, contact management and activity tracking.
+        Built with Next.js 15, Supabase and TypeScript.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+        <a href="https://dealflow-crm-eta.vercel.app" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-6 inline-flex items-center justify-center gap-2">
+          Open live app
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
         </a>
-        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-ink-400 text-sm hover:text-ink-200 hover:bg-white/[0.03] transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
-          Revenue
+        <a href="https://github.com/Mark1Anthony/dealflow-crm" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 text-ink-400 text-sm font-medium hover:text-accent-cyan transition py-3 px-6 border border-white/10 rounded-full hover:border-accent-cyan/30">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View source
         </a>
-        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-ink-400 text-sm hover:text-ink-200 hover:bg-white/[0.03] transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-          Customers
-        </a>
-        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-ink-400 text-sm hover:text-ink-200 hover:bg-white/[0.03] transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
-          Orders
-        </a>
-        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-ink-400 text-sm hover:text-ink-200 hover:bg-white/[0.03] transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          Settings
-        </a>
-      </nav>
-      <div class="p-4 border-t border-white/5">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white text-xs font-bold">M</div>
-          <div class="flex-1 min-w-0">
-            <div class="text-ink-100 text-sm font-medium truncate">Mark A.</div>
-            <div class="text-ink-500 text-[10px]">Admin</div>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Main -->
-    <main class="lg:ml-[220px] p-5 md:p-8 pt-20 lg:pt-8">
-
-      <!-- Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-        <div>
-          <h1 class="text-ink-50 text-2xl font-bold">Dashboard</h1>
-          <p class="text-ink-500 text-sm">Business overview for April 2026</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <select id="range-select" onchange="changeRange(this.value)" class="bg-[#1a1b24] border border-white/10 text-ink-200 text-sm rounded-lg px-3 py-2 outline-none cursor-pointer">
-            <option value="7d">Last 7 days</option>
-            <option value="30d" selected>Last 30 days</option>
-            <option value="90d">Last 90 days</option>
-            <option value="12m">Last 12 months</option>
-          </select>
-          <button onclick="refreshData()" class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium px-4 py-2 rounded-lg hover:bg-cyan-500/20 transition flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
-            Refresh
-          </button>
-        </div>
       </div>
 
-      <!-- KPI Cards -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div class="bg-[#111218] border border-white/5 rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <div class="text-ink-500 text-xs font-medium uppercase tracking-wider">Revenue</div>
-            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-          </div>
-          <div class="text-ink-50 text-2xl font-bold" id="kpi-revenue">€47,832</div>
-          <div class="flex items-center gap-1 mt-1"><span class="text-emerald-400 text-xs font-semibold" id="kpi-revenue-change">+12.4%</span><span class="text-ink-600 text-xs">vs last period</span></div>
-        </div>
-        <div class="bg-[#111218] border border-white/5 rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <div class="text-ink-500 text-xs font-medium uppercase tracking-wider">Customers</div>
-            <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-            </div>
-          </div>
-          <div class="text-ink-50 text-2xl font-bold" id="kpi-customers">1,284</div>
-          <div class="flex items-center gap-1 mt-1"><span class="text-emerald-400 text-xs font-semibold" id="kpi-customers-change">+8.1%</span><span class="text-ink-600 text-xs">vs last period</span></div>
-        </div>
-        <div class="bg-[#111218] border border-white/5 rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <div class="text-ink-500 text-xs font-medium uppercase tracking-wider">Orders</div>
-            <div class="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
-            </div>
-          </div>
-          <div class="text-ink-50 text-2xl font-bold" id="kpi-orders">342</div>
-          <div class="flex items-center gap-1 mt-1"><span class="text-emerald-400 text-xs font-semibold" id="kpi-orders-change">+5.6%</span><span class="text-ink-600 text-xs">vs last period</span></div>
-        </div>
-        <div class="bg-[#111218] border border-white/5 rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-3">
-            <div class="text-ink-500 text-xs font-medium uppercase tracking-wider">Conversion</div>
-            <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
-              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
-            </div>
-          </div>
-          <div class="text-ink-50 text-2xl font-bold" id="kpi-conversion">3.2%</div>
-          <div class="flex items-center gap-1 mt-1"><span class="text-red-400 text-xs font-semibold" id="kpi-conversion-change">-0.3%</span><span class="text-ink-600 text-xs">vs last period</span></div>
-        </div>
+      <div class="glass rounded-2xl p-6 text-left">
+        <div class="text-ink-500 font-mono text-[10px] uppercase tracking-widest mb-4">How to try it</div>
+        <ol class="space-y-3 text-sm text-ink-300">
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
+            <span>Click <strong class="text-ink-100">Open live app</strong> above</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
+            <span>Sign up with any email and password (no confirmation needed)</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
+            <span>Click <strong class="text-ink-100">Load demo data</strong> to populate the app</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
+            <span>Try dragging deals between pipeline stages, creating contacts, logging activities</span>
+          </li>
+        </ol>
       </div>
 
-      <!-- Charts row -->
-      <div class="grid lg:grid-cols-[2fr,1fr] gap-4 mb-8">
-        <!-- Revenue chart -->
-        <div class="bg-[#111218] border border-white/5 rounded-2xl p-5">
-          <div class="flex items-center justify-between mb-5">
-            <div><div class="text-ink-50 font-bold">Revenue over time</div><div class="text-ink-500 text-xs">Daily revenue in EUR</div></div>
-            <div class="flex gap-1">
-              <button onclick="setChartType('bar')" id="btn-bar" class="px-3 py-1 rounded-md text-xs font-medium bg-white/5 text-ink-300 transition">Bar</button>
-              <button onclick="setChartType('line')" id="btn-line" class="px-3 py-1 rounded-md text-xs font-medium bg-cyan-500/15 text-cyan-400 transition">Line</button>
-            </div>
-          </div>
-          <div class="h-[260px] relative" id="chart-container">
-            <canvas id="revenue-chart" class="w-full h-full"></canvas>
-          </div>
-        </div>
-        <!-- Donut -->
-        <div class="bg-[#111218] border border-white/5 rounded-2xl p-5">
-          <div class="text-ink-50 font-bold mb-1">Revenue by source</div>
-          <div class="text-ink-500 text-xs mb-5">This period</div>
-          <div class="flex justify-center mb-5">
-            <div class="relative w-[160px] h-[160px]">
-              <canvas id="donut-chart" width="160" height="160"></canvas>
-              <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <div class="text-ink-50 text-lg font-bold" id="donut-center">€47.8k</div>
-                <div class="text-ink-500 text-[10px]">Total</div>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-2" id="donut-legend"></div>
-        </div>
+      <div class="mt-8 flex flex-wrap gap-1.5 justify-center">
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Next.js 15</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">TypeScript</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Supabase Auth</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">PostgreSQL + RLS</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Server Actions</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Tailwind CSS</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Zod</span>
+        <span class="px-2.5 py-1 rounded bg-ink-800/60 border border-ink-700/40 text-ink-300 text-[10px] font-mono">Vitest</span>
       </div>
 
-      <!-- Table -->
-      <div class="bg-[#111218] border border-white/5 rounded-2xl overflow-hidden">
-        <div class="p-5 flex items-center justify-between border-b border-white/5">
-          <div><div class="text-ink-50 font-bold">Recent orders</div><div class="text-ink-500 text-xs">Last 10 transactions</div></div>
-          <div class="relative">
-            <input id="table-search" oninput="filterTable(this.value)" placeholder="Search..." class="bg-[#1a1b24] border border-white/10 text-ink-200 text-sm rounded-lg pl-9 pr-3 py-2 w-[200px] outline-none placeholder:text-ink-600 focus:border-cyan-500/40 transition" />
-            <svg class="w-4 h-4 text-ink-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-          </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="text-left text-ink-500 text-xs uppercase tracking-wider border-b border-white/5">
-                <th class="px-5 py-3 font-medium">Order</th>
-                <th class="px-5 py-3 font-medium">Customer</th>
-                <th class="px-5 py-3 font-medium">Amount</th>
-                <th class="px-5 py-3 font-medium">Status</th>
-                <th class="px-5 py-3 font-medium">Date</th>
-              </tr>
-            </thead>
-            <tbody id="order-table"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Tech footer -->
-      <div class="mt-8 pt-6 border-t border-white/5">
-        <div class="text-[10px] text-ink-600 font-mono uppercase tracking-widest mb-3">Built with</div>
-        <div class="flex flex-wrap gap-1.5">
-          <span class="px-2.5 py-1 rounded bg-white/[0.03] border border-white/5 text-ink-400 text-[10px] font-mono">TypeScript</span>
-          <span class="px-2.5 py-1 rounded bg-white/[0.03] border border-white/5 text-ink-400 text-[10px] font-mono">Canvas API</span>
-          <span class="px-2.5 py-1 rounded bg-white/[0.03] border border-white/5 text-ink-400 text-[10px] font-mono">Astro</span>
-          <span class="px-2.5 py-1 rounded bg-white/[0.03] border border-white/5 text-ink-400 text-[10px] font-mono">Tailwind</span>
-          <span class="px-2.5 py-1 rounded bg-white/[0.03] border border-white/5 text-ink-400 text-[10px] font-mono">REST API ready</span>
-        </div>
-      </div>
-    </main>
+    </div>
   </div>
-
-  <script>
-    // ===== DATA GENERATION =====
-    const names = ['Anna Schmidt','Thomas Weber','Lisa Braun','Michael Koch','Sarah Fischer','David Bauer','Emma Wolf','Felix Meyer','Laura Hoffmann','Jonas Richter','Marie Schulz','Tim Becker','Nina Wagner','Paul Hartmann','Julia Frank'];
-    const statuses = ['completed','completed','completed','processing','completed','shipped','completed','processing','completed','completed'] as const;
-    const statusColors: Record<string, string> = { completed:'bg-emerald-500/15 text-emerald-400', processing:'bg-amber-500/15 text-amber-400', shipped:'bg-blue-500/15 text-blue-400' };
-
-    function seed(s: number) { return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
-
-    function generateData(range: string) {
-      const rng = seed(range === '7d' ? 42 : range === '30d' ? 77 : range === '90d' ? 123 : 256);
-      const days = range === '7d' ? 7 : range === '30d' ? 30 : range === '90d' ? 90 : 365;
-      const baseRev = range === '7d' ? 1200 : range === '30d' ? 1500 : 1800;
-
-      // Revenue data
-      const revData: number[] = [];
-      for (let i = 0; i < days; i++) revData.push(Math.round(baseRev + rng() * 1200 - 200 + Math.sin(i / 7) * 300));
-
-      const totalRev = revData.reduce((a, b) => a + b, 0);
-      const prevRev = totalRev * (0.85 + rng() * 0.1);
-      const revChange = ((totalRev - prevRev) / prevRev * 100).toFixed(1);
-
-      const customers = Math.round(400 + days * 30 * rng());
-      const custChange = (5 + rng() * 8).toFixed(1);
-      const orders = Math.round(customers * (0.2 + rng() * 0.1));
-      const ordChange = (2 + rng() * 7).toFixed(1);
-      const conv = (2.5 + rng() * 1.5).toFixed(1);
-      const convChange = (rng() > 0.5 ? '+' : '-') + (rng() * 0.8).toFixed(1);
-
-      // Sources
-      const sources = [
-        { name: 'Direct', pct: 35 + Math.round(rng() * 10), color: '#22d3ee' },
-        { name: 'Google', pct: 25 + Math.round(rng() * 8), color: '#a78bfa' },
-        { name: 'Social', pct: 15 + Math.round(rng() * 5), color: '#f59e0b' },
-        { name: 'Referral', pct: 10 + Math.round(rng() * 5), color: '#34d399' },
-      ];
-      const remaining = 100 - sources.reduce((a, s) => a + s.pct, 0);
-      if (remaining > 0) sources.push({ name: 'Other', pct: remaining, color: '#64748b' });
-
-      // Orders table
-      const orderList = [];
-      for (let i = 0; i < 10; i++) {
-        const d = new Date();
-        d.setDate(d.getDate() - i);
-        orderList.push({
-          id: '#' + (4200 + Math.round(rng() * 800)),
-          name: names[Math.floor(rng() * names.length)],
-          amount: '€' + (50 + Math.round(rng() * 450)).toLocaleString(),
-          status: statuses[Math.floor(rng() * statuses.length)],
-          date: d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }),
-        });
-      }
-
-      return { revData, totalRev, revChange, customers, custChange, orders, ordChange, conv, convChange, sources, orderList };
-    }
-
-    // ===== RENDERING =====
-    let currentRange = '30d';
-    let chartType = 'line';
-    let data = generateData(currentRange);
-
-    function render() {
-      // KPIs
-      (document.getElementById('kpi-revenue') as HTMLElement).textContent = '€' + data.totalRev.toLocaleString();
-      const revCh = document.getElementById('kpi-revenue-change') as HTMLElement;
-      revCh.textContent = '+' + data.revChange + '%'; revCh.className = 'text-emerald-400 text-xs font-semibold';
-
-      (document.getElementById('kpi-customers') as HTMLElement).textContent = data.customers.toLocaleString();
-      const custCh = document.getElementById('kpi-customers-change') as HTMLElement;
-      custCh.textContent = '+' + data.custChange + '%'; custCh.className = 'text-emerald-400 text-xs font-semibold';
-
-      (document.getElementById('kpi-orders') as HTMLElement).textContent = data.orders.toLocaleString();
-      const ordCh = document.getElementById('kpi-orders-change') as HTMLElement;
-      ordCh.textContent = '+' + data.ordChange + '%'; ordCh.className = 'text-emerald-400 text-xs font-semibold';
-
-      (document.getElementById('kpi-conversion') as HTMLElement).textContent = data.conv + '%';
-      const convCh = document.getElementById('kpi-conversion-change') as HTMLElement;
-      convCh.textContent = data.convChange + '%';
-      convCh.className = data.convChange.startsWith('-') ? 'text-red-400 text-xs font-semibold' : 'text-emerald-400 text-xs font-semibold';
-
-      drawRevenueChart();
-      drawDonut();
-      renderTable(data.orderList);
-    }
-
-    // ===== REVENUE CHART (Canvas) =====
-    function drawRevenueChart() {
-      const canvas = document.getElementById('revenue-chart') as HTMLCanvasElement;
-      const ctx = canvas.getContext('2d')!;
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.parentElement!.getBoundingClientRect();
-      canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
-      canvas.style.width = rect.width + 'px'; canvas.style.height = rect.height + 'px';
-      ctx.scale(dpr, dpr);
-      const w = rect.width, h = rect.height;
-      ctx.clearRect(0, 0, w, h);
-
-      const d = data.revData;
-      const max = Math.max(...d) * 1.1;
-      const step = w / d.length;
-      const padB = 30;
-
-      // Grid lines
-      ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-      ctx.lineWidth = 1;
-      for (let i = 0; i < 5; i++) {
-        const y = padB + (h - padB) * (1 - i / 4) * 0.9;
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-      }
-
-      if (chartType === 'bar') {
-        const barW = Math.max(step * 0.6, 2);
-        d.forEach((v, i) => {
-          const bh = (v / max) * (h - padB - 20);
-          const x = i * step + step / 2 - barW / 2;
-          const y = h - padB - bh;
-          const grad = ctx.createLinearGradient(x, y, x, h - padB);
-          grad.addColorStop(0, 'rgba(34,211,238,0.7)');
-          grad.addColorStop(1, 'rgba(34,211,238,0.1)');
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.roundRect(x, y, barW, bh, 2);
-          ctx.fill();
-        });
-      } else {
-        // Area + line
-        ctx.beginPath();
-        ctx.moveTo(0, h - padB);
-        d.forEach((v, i) => {
-          const x = i * step + step / 2;
-          const y = h - padB - (v / max) * (h - padB - 20);
-          if (i === 0) ctx.lineTo(x, y); else ctx.lineTo(x, y);
-        });
-        ctx.lineTo(w, h - padB);
-        ctx.closePath();
-        const grad = ctx.createLinearGradient(0, 0, 0, h);
-        grad.addColorStop(0, 'rgba(34,211,238,0.15)');
-        grad.addColorStop(1, 'rgba(34,211,238,0)');
-        ctx.fillStyle = grad;
-        ctx.fill();
-
-        ctx.beginPath();
-        d.forEach((v, i) => {
-          const x = i * step + step / 2;
-          const y = h - padB - (v / max) * (h - padB - 20);
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        });
-        ctx.strokeStyle = '#22d3ee';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Last point dot
-        const lastX = (d.length - 1) * step + step / 2;
-        const lastY = h - padB - (d[d.length - 1] / max) * (h - padB - 20);
-        ctx.beginPath(); ctx.arc(lastX, lastY, 4, 0, Math.PI * 2);
-        ctx.fillStyle = '#22d3ee'; ctx.fill();
-        ctx.beginPath(); ctx.arc(lastX, lastY, 8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(34,211,238,0.2)'; ctx.fill();
-      }
-    }
-
-    // ===== DONUT CHART =====
-    function drawDonut() {
-      const canvas = document.getElementById('donut-chart') as HTMLCanvasElement;
-      const ctx = canvas.getContext('2d')!;
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = 160 * dpr; canvas.height = 160 * dpr;
-      ctx.scale(dpr, dpr);
-      ctx.clearRect(0, 0, 160, 160);
-
-      const cx = 80, cy = 80, r = 65, lw = 18;
-      let angle = -Math.PI / 2;
-
-      data.sources.forEach(s => {
-        const sweep = (s.pct / 100) * Math.PI * 2;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, angle, angle + sweep);
-        ctx.lineWidth = lw;
-        ctx.strokeStyle = s.color;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-        angle += sweep + 0.04;
-      });
-
-      (document.getElementById('donut-center') as HTMLElement).textContent = '€' + (data.totalRev / 1000).toFixed(1) + 'k';
-
-      const legend = document.getElementById('donut-legend') as HTMLElement;
-      legend.innerHTML = data.sources.map(s =>
-        `<div class="flex items-center justify-between text-xs"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full" style="background:${s.color}"></div><span class="text-ink-300">${s.name}</span></div><span class="text-ink-100 font-semibold">${s.pct}%</span></div>`
-      ).join('');
-    }
-
-    // ===== TABLE =====
-    let allOrders = data.orderList;
-    function renderTable(orders: typeof allOrders) {
-      const tb = document.getElementById('order-table') as HTMLElement;
-      tb.innerHTML = orders.map(o =>
-        `<tr class="border-b border-white/[0.03] hover:bg-white/[0.02] transition">
-          <td class="px-5 py-3 text-ink-100 font-mono font-medium">${o.id}</td>
-          <td class="px-5 py-3 text-ink-200">${o.name}</td>
-          <td class="px-5 py-3 text-ink-100 font-semibold">${o.amount}</td>
-          <td class="px-5 py-3"><span class="px-2 py-0.5 rounded-full text-[11px] font-medium ${statusColors[o.status]}">${o.status}</span></td>
-          <td class="px-5 py-3 text-ink-400">${o.date}</td>
-        </tr>`
-      ).join('');
-    }
-
-    // ===== INTERACTIONS =====
-    (window as any).changeRange = function(val: string) {
-      currentRange = val;
-      data = generateData(val);
-      allOrders = data.orderList;
-      render();
-    };
-
-    (window as any).refreshData = function() {
-      data = generateData(currentRange);
-      allOrders = data.orderList;
-      render();
-    };
-
-    (window as any).setChartType = function(type: string) {
-      chartType = type;
-      document.getElementById('btn-bar')!.className = 'px-3 py-1 rounded-md text-xs font-medium transition ' + (type === 'bar' ? 'bg-cyan-500/15 text-cyan-400' : 'bg-white/5 text-ink-300');
-      document.getElementById('btn-line')!.className = 'px-3 py-1 rounded-md text-xs font-medium transition ' + (type === 'line' ? 'bg-cyan-500/15 text-cyan-400' : 'bg-white/5 text-ink-300');
-      drawRevenueChart();
-    };
-
-    (window as any).filterTable = function(q: string) {
-      const filtered = allOrders.filter(o => o.name.toLowerCase().includes(q.toLowerCase()) || o.id.includes(q) || o.amount.includes(q));
-      renderTable(filtered);
-    };
-
-    // Init
-    render();
-    window.addEventListener('resize', drawRevenueChart);
-  </script>
 
 </Layout>
