@@ -1,0 +1,214 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Automation Pipeline — Project Details" description="6-step automation pipeline that handles form submissions with validation, AI triage, auto-reply, notifications, CRM storage, and calendar blocking.">
+
+  <a href="/mark-portfolio/#work" class="fixed top-6 left-6 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    <span data-i18n="back">Back to portfolio</span>
+  </a>
+
+  <button id="lang-toggle" class="fixed top-6 right-6 z-40 px-3 py-1.5 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan transition cursor-pointer">EN</button>
+
+  <div class="min-h-screen py-20 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-14">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-white font-bold text-2xl mb-6">P</div>
+        <span class="section-label mx-auto" data-i18n="label">Project</span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl mt-4 mb-4" data-i18n="title">Automation Pipeline</h1>
+        <p class="text-ink-400 text-lg max-w-2xl mx-auto" data-i18n="subtitle">
+          A 6-step pipeline that takes a form submission and runs it through validation, AI triage, auto-reply, owner notification, CRM storage, and calendar blocking.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-16">
+        <a href="/mark-portfolio/demos/automation/" class="btn-primary text-sm py-3 px-8 inline-flex items-center justify-center gap-2">
+          <span data-i18n="cta_demo">Try the demo</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+        <a href="https://github.com/Mark1Anthony/lead-triage" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 text-ink-400 text-sm font-medium hover:text-accent-cyan transition py-3 px-8 border border-white/10 rounded-full hover:border-accent-cyan/30">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span data-i18n="cta_code">View source</span>
+        </a>
+      </div>
+
+      <!-- Why I built this -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4" data-i18n="why_title">Why I built this</h2>
+        <p class="text-ink-300 text-sm leading-relaxed" data-i18n="why_text">
+          When a customer submits a contact form on a service business website, the owner usually sees it hours later in a cluttered inbox. I built a pipeline that takes that form submission and runs it through 6 automated steps: validation, AI triage, auto-reply to the customer, owner notification via Telegram, CRM storage, and calendar blocking. The demo lets you fill out a form and watch each step execute in real time.
+        </p>
+      </div>
+
+      <!-- What it does -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4" data-i18n="what_title">What it does</h2>
+        <div class="space-y-4">
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_valid_title">Form Validation + Spam Detection</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_valid_desc">Validates input fields, detects spam patterns, rejects junk before it enters the pipeline.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_classify_title">GPT-powered Priority Classification</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_classify_desc">AI reads the message and classifies it as hot, warm, or cold based on buying intent.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_email_title">Automatic Customer Confirmation Email</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_email_desc">Customer gets an instant confirmation that their message was received and is being processed.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_tg_title">Owner Notification via Telegram</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_tg_desc">Business owner gets a Telegram message with lead details and priority score within seconds.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_crm_title">CRM/Database Storage</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_crm_desc">Every lead is stored with full context: message, classification, timestamp, and status.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-rose-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_cal_title">Calendar Slot Blocking</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_cal_desc">Automatically blocks a follow-up slot on the owner's calendar for hot leads.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech -->
+      <div class="glass rounded-2xl p-8 mb-12">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4" data-i18n="tech_title">Tech decisions</h2>
+        <div class="space-y-4 text-sm">
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">FastAPI</span><span class="text-ink-300" data-i18n="tech_fastapi">Async pipeline orchestration. Each step runs sequentially, with error handling at every stage.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">OpenAI API</span><span class="text-ink-300" data-i18n="tech_openai">GPT classifies lead priority with structured JSON output. Consistent, repeatable scoring.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Telegram Bot API</span><span class="text-ink-300" data-i18n="tech_telegram">Real-time owner notifications. Message includes lead name, priority, and summary.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Resend</span><span class="text-ink-300" data-i18n="tech_resend">Transactional email for customer confirmation. Simple API, reliable delivery.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">SQLite</span><span class="text-ink-300" data-i18n="tech_sqlite">Local database for lead storage and pipeline state. No external DB dependency.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">n8n</span><span class="text-ink-300" data-i18n="tech_n8n">Visual workflow automation for orchestrating the pipeline steps. Easy to extend and monitor.</span></div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="text-center">
+        <a href="/mark-portfolio/demos/automation/" class="btn-primary text-base py-4 px-10 inline-flex items-center justify-center gap-2">
+          <span data-i18n="cta_demo_bottom">Try the demo</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+const t = {
+  en: {
+    back: 'Back to portfolio',
+    label: 'Project',
+    title: 'Automation Pipeline',
+    subtitle: 'A 6-step pipeline that takes a form submission and runs it through validation, AI triage, auto-reply, owner notification, CRM storage, and calendar blocking.',
+    cta_demo: 'Try the demo',
+    cta_code: 'View source',
+    why_title: 'Why I built this',
+    why_text: "When a customer submits a contact form on a service business website, the owner usually sees it hours later in a cluttered inbox. I built a pipeline that takes that form submission and runs it through 6 automated steps: validation, AI triage, auto-reply to the customer, owner notification via Telegram, CRM storage, and calendar blocking. The demo lets you fill out a form and watch each step execute in real time.",
+    what_title: 'What it does',
+    feat_valid_title: 'Form Validation + Spam Detection',
+    feat_valid_desc: 'Validates input fields, detects spam patterns, rejects junk before it enters the pipeline.',
+    feat_classify_title: 'GPT-powered Priority Classification',
+    feat_classify_desc: 'AI reads the message and classifies it as hot, warm, or cold based on buying intent.',
+    feat_email_title: 'Automatic Customer Confirmation Email',
+    feat_email_desc: 'Customer gets an instant confirmation that their message was received and is being processed.',
+    feat_tg_title: 'Owner Notification via Telegram',
+    feat_tg_desc: 'Business owner gets a Telegram message with lead details and priority score within seconds.',
+    feat_crm_title: 'CRM/Database Storage',
+    feat_crm_desc: 'Every lead is stored with full context: message, classification, timestamp, and status.',
+    feat_cal_title: 'Calendar Slot Blocking',
+    feat_cal_desc: "Automatically blocks a follow-up slot on the owner's calendar for hot leads.",
+    tech_title: 'Tech decisions',
+    tech_fastapi: 'Async pipeline orchestration. Each step runs sequentially, with error handling at every stage.',
+    tech_openai: 'GPT classifies lead priority with structured JSON output. Consistent, repeatable scoring.',
+    tech_telegram: 'Real-time owner notifications. Message includes lead name, priority, and summary.',
+    tech_resend: 'Transactional email for customer confirmation. Simple API, reliable delivery.',
+    tech_sqlite: 'Local database for lead storage and pipeline state. No external DB dependency.',
+    tech_n8n: 'Visual workflow automation for orchestrating the pipeline steps. Easy to extend and monitor.',
+    cta_demo_bottom: 'Try the demo'
+  },
+  de: {
+    back: 'Zum Portfolio',
+    label: 'Projekt',
+    title: 'Automatisierungs-Pipeline',
+    subtitle: 'Eine 6-Schritte-Pipeline die Formular-Eingänge durch Validierung, KI-Triage, Auto-Antwort, Inhaber-Benachrichtigung, CRM-Speicherung und Kalender-Blockierung verarbeitet.',
+    cta_demo: 'Demo ausprobieren',
+    cta_code: 'Quellcode ansehen',
+    why_title: 'Warum ich das gebaut habe',
+    why_text: 'Wenn ein Kunde ein Kontaktformular auf einer Dienstleister-Website abschickt, sieht der Inhaber es meist Stunden später in einem überquellenden Postfach. Ich habe eine Pipeline gebaut die diese Formular-Eingänge durch 6 automatisierte Schritte verarbeitet: Validierung, KI-Triage, Auto-Antwort an den Kunden, Inhaber-Benachrichtigung per Telegram, CRM-Speicherung und Kalender-Blockierung. Die Demo lässt dich ein Formular ausfüllen und jeden Schritt in Echtzeit verfolgen.',
+    what_title: 'Was sie macht',
+    feat_valid_title: 'Formular-Validierung + Spam-Erkennung',
+    feat_valid_desc: 'Validiert Eingabefelder, erkennt Spam-Muster, weist Junk ab bevor er in die Pipeline gelangt.',
+    feat_classify_title: 'GPT-gestützte Prioritäts-Klassifizierung',
+    feat_classify_desc: 'KI liest die Nachricht und klassifiziert sie als heiß, warm oder kalt basierend auf Kaufabsicht.',
+    feat_email_title: 'Automatische Bestätigungs-E-Mail',
+    feat_email_desc: 'Kunde bekommt sofort eine Bestätigung dass seine Nachricht eingegangen ist und bearbeitet wird.',
+    feat_tg_title: 'Inhaber-Benachrichtigung per Telegram',
+    feat_tg_desc: 'Geschäftsinhaber bekommt eine Telegram-Nachricht mit Lead-Details und Prioritätsbewertung innerhalb von Sekunden.',
+    feat_crm_title: 'CRM/Datenbank-Speicherung',
+    feat_crm_desc: 'Jeder Lead wird mit vollem Kontext gespeichert: Nachricht, Klassifizierung, Zeitstempel und Status.',
+    feat_cal_title: 'Kalender-Slot-Blockierung',
+    feat_cal_desc: 'Blockiert automatisch einen Follow-up-Termin im Kalender des Inhabers für heiße Leads.',
+    tech_title: 'Technische Entscheidungen',
+    tech_fastapi: 'Async Pipeline-Orchestrierung. Jeder Schritt läuft sequenziell, mit Fehlerbehandlung in jeder Phase.',
+    tech_openai: 'GPT klassifiziert Lead-Priorität mit strukturiertem JSON-Output. Konsistente, wiederholbare Bewertung.',
+    tech_telegram: 'Echtzeit-Benachrichtigungen für den Inhaber. Nachricht enthält Lead-Name, Priorität und Zusammenfassung.',
+    tech_resend: 'Transaktions-E-Mail für Kundenbestätigung. Einfache API, zuverlässige Zustellung.',
+    tech_sqlite: 'Lokale Datenbank für Lead-Speicherung und Pipeline-Status. Keine externe DB-Abhängigkeit.',
+    tech_n8n: 'Visuelle Workflow-Automatisierung zur Orchestrierung der Pipeline-Schritte. Einfach erweiterbar und überwachbar.',
+    cta_demo_bottom: 'Demo ausprobieren'
+  }
+};
+let lang = localStorage.getItem('lang') || 'en';
+function applyLang() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t[lang]?.[key];
+    if (val) el.innerHTML = val;
+  });
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? 'DE' : 'EN';
+}
+document.getElementById('lang-toggle').addEventListener('click', () => {
+  lang = lang === 'en' ? 'de' : 'en';
+  localStorage.setItem('lang', lang);
+  applyLang();
+});
+applyLang();
+</script>
+
+</Layout>

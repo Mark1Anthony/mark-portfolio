@@ -1,0 +1,169 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Client Showcase — Project Details" description="A collection of real, deployed websites across industries plus interactive demos for automation and sales funnels.">
+
+  <a href="/mark-portfolio/#work" class="fixed top-6 left-6 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan hover:border-accent-cyan/40 transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    <span data-i18n="back">Back to portfolio</span>
+  </a>
+
+  <button id="lang-toggle" class="fixed top-6 right-6 z-40 px-3 py-1.5 rounded-full backdrop-blur-md bg-black/40 border border-white/10 text-sm text-ink-200 hover:text-accent-cyan transition cursor-pointer">EN</button>
+
+  <div class="min-h-screen py-20 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-14">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-2xl mb-6">S</div>
+        <span class="section-label mx-auto" data-i18n="label">Project</span>
+        <h1 class="font-display font-bold text-4xl md:text-5xl mt-4 mb-4" data-i18n="title">Client Showcase</h1>
+        <p class="text-ink-400 text-lg max-w-2xl mx-auto" data-i18n="subtitle">
+          A collection of real, deployed websites across different industries, plus interactive demos for automation and sales funnels.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-16">
+        <a href="https://mark1anthony.github.io/client-showcase/" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-8 inline-flex items-center justify-center gap-2">
+          <span data-i18n="cta_demo">Open showcase</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+        <a href="https://github.com/Mark1Anthony/client-showcase" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 text-ink-400 text-sm font-medium hover:text-accent-cyan transition py-3 px-8 border border-white/10 rounded-full hover:border-accent-cyan/30">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span data-i18n="cta_code">View source</span>
+        </a>
+      </div>
+
+      <!-- Why I built this -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4" data-i18n="why_title">Why I built this</h2>
+        <p class="text-ink-300 text-sm leading-relaxed" data-i18n="why_text">
+          Businesses need to see what they're buying before they commit. I built this as a sales tool: a collection of real, deployed websites across different industries, plus interactive demos that show how automation and sales funnels work in practice. Every site is clickable, every demo is interactive.
+        </p>
+      </div>
+
+      <!-- What it includes -->
+      <div class="glass rounded-2xl p-8 mb-8">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4" data-i18n="what_title">What it includes</h2>
+        <div class="space-y-4">
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_sites_title">7 Industry Websites</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_sites_desc">Restaurant, Fitness, Salon, Tax Advisor, Roofing, Cleaning (x2). All fully responsive and deployed.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_ai_title">Interactive AI Automation Demo</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_ai_desc">Customer fills out a form and sees what happens behind the scenes: classification, routing, notifications.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75"/></svg>
+            </div>
+            <div>
+              <div class="text-ink-100 text-sm font-semibold" data-i18n="feat_funnel_title">Sales Funnel</div>
+              <div class="text-ink-400 text-xs" data-i18n="feat_funnel_desc">Needs quiz, upsells, and checkout flow. Shows how a customer journey works end to end.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech -->
+      <div class="glass rounded-2xl p-8 mb-12">
+        <h2 class="font-display font-bold text-xl text-ink-50 mb-4" data-i18n="tech_title">Tech decisions</h2>
+        <div class="space-y-4 text-sm">
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">HTML</span><span class="text-ink-300" data-i18n="tech_html">Semantic markup, accessible structure, no framework overhead.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Tailwind CSS</span><span class="text-ink-300" data-i18n="tech_tailwind">Utility-first styling for fast iteration and consistent design across all sites.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">JavaScript</span><span class="text-ink-300" data-i18n="tech_js">Interactive demos, form handling, and animation logic. No build step required.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">GitHub Pages</span><span class="text-ink-300" data-i18n="tech_gh">Free hosting, automatic deploys on push. Zero infrastructure cost.</span></div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="text-center">
+        <a href="https://mark1anthony.github.io/client-showcase/" target="_blank" rel="noopener" class="btn-primary text-base py-4 px-10 inline-flex items-center justify-center gap-2">
+          <span data-i18n="cta_demo_bottom">Open showcase</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+const t = {
+  en: {
+    back: 'Back to portfolio',
+    label: 'Project',
+    title: 'Client Showcase',
+    subtitle: 'A collection of real, deployed websites across different industries, plus interactive demos for automation and sales funnels.',
+    cta_demo: 'Open showcase',
+    cta_code: 'View source',
+    why_title: 'Why I built this',
+    why_text: "Businesses need to see what they're buying before they commit. I built this as a sales tool: a collection of real, deployed websites across different industries, plus interactive demos that show how automation and sales funnels work in practice. Every site is clickable, every demo is interactive.",
+    what_title: 'What it includes',
+    feat_sites_title: '7 Industry Websites',
+    feat_sites_desc: 'Restaurant, Fitness, Salon, Tax Advisor, Roofing, Cleaning (x2). All fully responsive and deployed.',
+    feat_ai_title: 'Interactive AI Automation Demo',
+    feat_ai_desc: 'Customer fills out a form and sees what happens behind the scenes: classification, routing, notifications.',
+    feat_funnel_title: 'Sales Funnel',
+    feat_funnel_desc: 'Needs quiz, upsells, and checkout flow. Shows how a customer journey works end to end.',
+    tech_title: 'Tech decisions',
+    tech_html: 'Semantic markup, accessible structure, no framework overhead.',
+    tech_tailwind: 'Utility-first styling for fast iteration and consistent design across all sites.',
+    tech_js: 'Interactive demos, form handling, and animation logic. No build step required.',
+    tech_gh: 'Free hosting, automatic deploys on push. Zero infrastructure cost.',
+    cta_demo_bottom: 'Open showcase'
+  },
+  de: {
+    back: 'Zum Portfolio',
+    label: 'Projekt',
+    title: 'Kunden-Showcase',
+    subtitle: 'Eine Sammlung echter, deployter Websites aus verschiedenen Branchen, plus interaktive Demos für Automatisierung und Sales Funnels.',
+    cta_demo: 'Showcase öffnen',
+    cta_code: 'Quellcode ansehen',
+    why_title: 'Warum ich das gebaut habe',
+    why_text: 'Betriebe müssen sehen was sie kaufen, bevor sie sich entscheiden. Ich habe das als Verkaufstool gebaut: eine Sammlung echter, deployter Websites aus verschiedenen Branchen, plus interaktive Demos die zeigen wie Automatisierung und Sales Funnels in der Praxis funktionieren. Jede Seite ist anklickbar, jede Demo ist interaktiv.',
+    what_title: 'Was enthalten ist',
+    feat_sites_title: '7 Branchen-Websites',
+    feat_sites_desc: 'Restaurant, Fitness, Salon, Steuerberater, Dachdecker, Reinigung (x2). Alle voll responsive und deployed.',
+    feat_ai_title: 'Interaktive KI-Automatisierungs-Demo',
+    feat_ai_desc: 'Kunde füllt ein Formular aus und sieht was hinter den Kulissen passiert: Klassifizierung, Routing, Benachrichtigungen.',
+    feat_funnel_title: 'Sales Funnel',
+    feat_funnel_desc: 'Bedarfsquiz, Upsells und Checkout-Flow. Zeigt wie eine Customer Journey von Anfang bis Ende funktioniert.',
+    tech_title: 'Technische Entscheidungen',
+    tech_html: 'Semantisches Markup, barrierefreie Struktur, kein Framework-Overhead.',
+    tech_tailwind: 'Utility-first Styling für schnelle Iteration und einheitliches Design über alle Seiten.',
+    tech_js: 'Interaktive Demos, Formular-Handling und Animationslogik. Kein Build-Schritt nötig.',
+    tech_gh: 'Kostenloses Hosting, automatische Deploys bei Push. Null Infrastrukturkosten.',
+    cta_demo_bottom: 'Showcase öffnen'
+  }
+};
+let lang = localStorage.getItem('lang') || 'en';
+function applyLang() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t[lang]?.[key];
+    if (val) el.innerHTML = val;
+  });
+  document.getElementById('lang-toggle').textContent = lang === 'en' ? 'DE' : 'EN';
+}
+document.getElementById('lang-toggle').addEventListener('click', () => {
+  lang = lang === 'en' ? 'de' : 'en';
+  localStorage.setItem('lang', lang);
+  applyLang();
+});
+applyLang();
+</script>
+
+</Layout>
