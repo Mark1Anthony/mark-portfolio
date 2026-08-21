@@ -1,41 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Capabilities from '../components/Capabilities.astro';
-import Skills from '../components/Skills.astro';
-import Projects from '../components/Projects.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import { en } from '../i18n/en';
-import { de } from '../i18n/de';
-
-const translations = { en, de };
+// German is the default locale, so it lives at the site root.
+import Page from '../components/Page.astro';
 ---
 
-<Layout
-  title="Mark Amaechi · Software Developer & AI Automation Specialist"
-  description="Software developer based in Düsseldorf. Python, TypeScript, C++, REST APIs, AI integration. Available for hire."
->
-
-  <!-- ═══ CANVAS BACKGROUND ═══ -->
-  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
-
-  <Nav />
-  <Hero />
-  <About />
-  <Capabilities />
-  <Skills />
-  <Projects />
-  <Contact />
-  <Footer />
-
-  <!-- i18n data -->
-  <script type="application/json" id="i18n-data" set:html={JSON.stringify(translations)}></script>
-
-  <script>
-    import '../scripts/effects';
-  </script>
-
-</Layout>
+<Page lang="de" />

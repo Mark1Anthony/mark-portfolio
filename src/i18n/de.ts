@@ -59,4 +59,6 @@ export const de = {
   'proj.showcase.desc': 'Ein Kunden-Showcase mit sechs Branchen-Websites, einer interaktiven AI Automations-Demo und einem vollständigen Sales Funnel mit Bedarfsanalyse, Upsells und Checkout. Gebaut, um nicht-technischen Kunden zu zeigen, was moderne Web-Automatisierung kann.',
   'proj.crm.sub': 'Full-Stack CRM mit echtem Auth und Datenbank',
   'proj.crm.desc': 'Ein CRM gebaut mit Next.js 16 Server Actions, Supabase Auth, PostgreSQL mit Row Level Security und Drag-and-Drop-Kanban. Ein Klick auf "Als Demo-Nutzer ansehen" öffnet es mit Beispieldaten, ohne Registrierung. 5 Tabellen, RLS auf jeder Tabelle, Zod-Validierung, TypeScript durchgehend.',
+  'meta.title': 'Mark Amaechi · Softwareentwickler & AI-Automatisierung',
+  'meta.description': 'Softwareentwickler aus Düsseldorf. Python, TypeScript, C++, REST-APIs, KI-Integration. Verfügbar für Projekte.',
 } as const;

@@ -1,19 +1,24 @@
 ---
+import { useTranslations, type Lang, type TranslationKey } from '../i18n/ui';
 import { skills, stackCatKeys } from '../data/skills';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
   <section id="skills" class="py-32 md:py-40 relative">
     <div class="max-w-6xl mx-auto px-6 md:px-10">
       <div class="reveal mb-16">
-        <span class="section-label" data-i18n="stack.label">Stack</span>
+        <span class="section-label">{t('stack.label')}</span>
         <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl mt-6 leading-tight">
-          <span data-i18n="stack.title1">The tools I use</span><br>
-          <span class="text-gradient" data-i18n="stack.title2">to ship.</span>
+          <span>{t('stack.title1')}</span><br>
+          <span class="text-gradient">{t('stack.title2')}</span>
         </h2>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {Object.entries(skills).map(([cat, items], i) => (
           <div class="reveal glass rounded-2xl p-7" style={`transition-delay: ${i * 60}ms`}>
-            <h3 class="text-accent-cyan font-mono text-[11px] uppercase tracking-widest mb-5" data-i18n={stackCatKeys[cat]}>{cat}</h3>
+            <h3 class="text-accent-cyan font-mono text-[11px] uppercase tracking-widest mb-5">{t(stackCatKeys[cat] as TranslationKey)}</h3>
             <div class="flex flex-wrap gap-2">
               {items.map((s) => (
                 <span class="inline-block px-3 py-1.5 rounded-lg bg-ink-800/60 border border-ink-700/40 text-ink-200 text-sm font-medium hover:border-accent-cyan/50 hover:text-accent-cyan hover:-translate-y-0.5 transition-all cursor-default">

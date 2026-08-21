@@ -1,3 +1,12 @@
+---
+import { useTranslations, pathForLang, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL;
+---
+
   <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink-950/60 border-b border-white/5">
     <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-3 group">
@@ -5,19 +14,29 @@
         <span class="font-display font-semibold text-ink-50 group-hover:text-accent-cyan transition">Mark Amaechi</span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm">
-        <a href="#about" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.about">About</a>
-        <a href="#capabilities" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.capabilities">Capabilities</a>
-        <a href="#skills" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.stack">Stack</a>
-        <a href="#work" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.work">Work</a>
-        <a href="#contact" class="text-ink-300 hover:text-accent-cyan transition" data-i18n="nav.contact">Contact</a>
+        <a href="#about" class="text-ink-300 hover:text-accent-cyan transition">{t('nav.about')}</a>
+        <a href="#capabilities" class="text-ink-300 hover:text-accent-cyan transition">{t('nav.capabilities')}</a>
+        <a href="#skills" class="text-ink-300 hover:text-accent-cyan transition">{t('nav.stack')}</a>
+        <a href="#work" class="text-ink-300 hover:text-accent-cyan transition">{t('nav.work')}</a>
+        <a href="#contact" class="text-ink-300 hover:text-accent-cyan transition">{t('nav.contact')}</a>
       </div>
       <div class="flex items-center gap-3">
         <!-- Language toggle -->
         <div class="flex items-center bg-ink-900/60 border border-white/10 rounded-full p-0.5 font-mono text-[11px]">
-          <button data-lang="en" class="lang-btn px-3 py-1 rounded-full transition text-ink-400">EN</button>
-          <button data-lang="de" class="lang-btn px-3 py-1 rounded-full transition text-ink-400">DE</button>
+          <a
+            href={pathForLang('en', base)}
+            hreflang="en"
+            aria-current={lang === 'en' ? 'true' : undefined}
+            class:list={['px-3 py-1 rounded-full transition', lang === 'en' ? 'bg-accent-cyan/15 text-accent-cyan' : 'text-ink-400 hover:text-ink-100']}
+          >EN</a>
+          <a
+            href={pathForLang('de', base)}
+            hreflang="de"
+            aria-current={lang === 'de' ? 'true' : undefined}
+            class:list={['px-3 py-1 rounded-full transition', lang === 'de' ? 'bg-accent-cyan/15 text-accent-cyan' : 'text-ink-400 hover:text-ink-100']}
+          >DE</a>
         </div>
-        <a href="#contact" class="btn-secondary text-sm py-2 px-5 hidden sm:inline-flex" data-i18n="nav.cta">Let's talk</a>
+        <a href="#contact" class="btn-secondary text-sm py-2 px-5 hidden sm:inline-flex">{t('nav.cta')}</a>
       </div>
     </div>
   </nav>

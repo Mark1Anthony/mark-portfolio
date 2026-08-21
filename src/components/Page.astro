@@ -1,0 +1,40 @@
+---
+/**
+ * The whole page, assembled once and rendered per language. The two routes
+ * (src/pages/index.astro for German, src/pages/en/index.astro for English)
+ * differ only in the lang they pass in.
+ */
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import About from './About.astro';
+import Capabilities from './Capabilities.astro';
+import Skills from './Skills.astro';
+import Projects from './Projects.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={t('meta.title')} description={t('meta.description')}>
+
+  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
+
+  <Nav lang={lang} />
+  <Hero lang={lang} />
+  <About lang={lang} />
+  <Capabilities lang={lang} />
+  <Skills lang={lang} />
+  <Projects lang={lang} />
+  <Contact lang={lang} />
+  <Footer lang={lang} />
+
+  <script>
+    import '../scripts/effects';
+  </script>
+
+</Layout>

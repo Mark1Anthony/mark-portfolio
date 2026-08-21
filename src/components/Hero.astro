@@ -1,6 +1,11 @@
 ---
+import { useTranslations, type Lang } from '../i18n/ui';
 import { Picture } from 'astro:assets';
 import markPhoto from '../assets/mark.jpg';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
   <section id="top" class="min-h-screen flex items-center relative overflow-hidden pt-20">
     <div class="max-w-6xl mx-auto px-6 md:px-10 w-full relative z-10">
@@ -8,19 +13,15 @@ import markPhoto from '../assets/mark.jpg';
         <!-- Left: text -->
         <div class="lg:col-span-7 order-2 lg:order-1">
           <div class="reveal mb-6">
-            <span class="section-label" data-i18n="hero.label">Software Developer · AI Automation · Düsseldorf</span>
+            <span class="section-label">{t('hero.label')}</span>
           </div>
           <h1 class="reveal font-display font-bold text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight mb-8" style="transition-delay: 80ms">
-            <span data-i18n="hero.title.greeting">Hi, I'm</span><br>
+            <span>{t('hero.title.greeting')}</span><br>
             <span class="text-gradient">Mark</span>.<br>
-            <span data-i18n="hero.title.tagline1">I ship software</span><br>
-            <span data-i18n="hero.title.tagline2">that works.</span>
+            <span>{t('hero.title.tagline1')}</span><br>
+            <span>{t('hero.title.tagline2')}</span>
           </h1>
-          <p class="reveal text-ink-300 text-lg md:text-xl max-w-xl leading-relaxed mb-6" style="transition-delay: 160ms" data-i18n="hero.subtitle">
-            Software Developer &amp; AI Automation Specialist based in Düsseldorf. I build
-            full-stack software, integrate AI systems, and automate the work that
-            slows teams down.
-          </p>
+          <p class="reveal text-ink-300 text-lg md:text-xl max-w-xl leading-relaxed mb-6" style="transition-delay: 160ms">{t('hero.subtitle')}</p>
           <div class="reveal mb-10 font-mono text-sm text-ink-400 flex flex-wrap gap-x-1 gap-y-1" style="transition-delay: 220ms">
             <span class="text-accent-cyan">Python</span>
             <span class="text-ink-600">·</span>
@@ -36,10 +37,10 @@ import markPhoto from '../assets/mark.jpg';
           </div>
           <div class="reveal flex flex-wrap gap-4" style="transition-delay: 300ms">
             <a href="#work" class="btn-primary">
-              <span data-i18n="hero.cta.work">View my work</span>
+              <span>{t('hero.cta.work')}</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
             </a>
-            <a href="#contact" class="btn-secondary" data-i18n="hero.cta.contact">Get in touch</a>
+            <a href="#contact" class="btn-secondary">{t('hero.cta.contact')}</a>
           </div>
         </div>
 

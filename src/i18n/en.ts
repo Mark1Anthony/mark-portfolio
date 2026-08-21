@@ -59,5 +59,7 @@ export const en = {
   'proj.showcase.sub': '7 websites + automation + sales funnel',
   'proj.showcase.desc': 'A client-facing showcase with six industry websites, an interactive AI automation demo and a full sales funnel with needs quiz, upsells and checkout. Built to show non-technical clients what modern web automation looks like.',
   'proj.crm.sub': 'Full-stack CRM with real auth and database',
-  'proj.crm.desc': 'A full-stack CRM built with Next.js 16 Server Actions, Supabase Auth, PostgreSQL with Row Level Security, and a drag-and-drop Kanban pipeline. One click on "Browse as demo user" opens it with sample data, no sign-up. 5 tables, RLS on every table, Zod validation, TypeScript throughout.'
+  'proj.crm.desc': 'A full-stack CRM built with Next.js 16 Server Actions, Supabase Auth, PostgreSQL with Row Level Security, and a drag-and-drop Kanban pipeline. One click on "Browse as demo user" opens it with sample data, no sign-up. 5 tables, RLS on every table, Zod validation, TypeScript throughout.',
+  'meta.title': 'Mark Amaechi · Software Developer & AI Automation Specialist',
+  'meta.description': 'Software developer based in Düsseldorf. Python, TypeScript, C++, REST APIs, AI integration. Available for hire.',
 } as const;
