@@ -44,12 +44,13 @@ const projects = [
   },
 ];
 
+// Only entries that a public repository actually demonstrates. Anything that
+// cannot be pointed at in the work below does not belong here: one unbacked
+// claim puts the whole list in doubt.
 const skills = {
-  'AI & Automation': ['Claude Code', 'OpenAI API', 'GPT Integration', 'Prompt Engineering', 'LLM Workflows', 'n8n', 'Process Automation'],
-  'Languages': ['Python', 'JavaScript', 'PHP', 'C++', 'C#', 'TypeScript', 'SQL', 'HTML/CSS'],
-  'Backend & APIs': ['REST APIs', 'JSON', 'Webhooks', 'FastAPI', 'Node.js', 'MySQL', 'SQLite', 'PostgreSQL'],
-  'Frontend': ['Astro', 'Tailwind', 'React (basics)', 'Canvas API', 'Responsive Design'],
-  'DevOps & Tools': ['Git', 'GitHub', 'Docker', 'Linux', 'CMake', 'Netlify', 'VS Code', 'Jira'],
+  'Languages': ['Python', 'TypeScript', 'JavaScript', 'C++', 'SQL'],
+  'Backend & Data': ['FastAPI', 'PostgreSQL', 'SQLite', 'REST APIs', 'OpenAI API'],
+  'Frontend & Tools': ['Next.js', 'Astro', 'Tailwind', 'Git', 'CMake'],
 };
 
 const capabilities = [
@@ -76,11 +77,9 @@ const capabilities = [
 ];
 
 const stackCatKeys: Record<string, string> = {
-  'AI & Automation': 'stack.cat.ai',
   'Languages': 'stack.cat.lang',
-  'Backend & APIs': 'stack.cat.backend',
-  'Frontend': 'stack.cat.frontend',
-  'DevOps & Tools': 'stack.cat.tools',
+  'Backend & Data': 'stack.cat.backend',
+  'Frontend & Tools': 'stack.cat.frontend',
 };
 
 // ─── All translatable strings ───
@@ -111,7 +110,7 @@ const t = {
     'cap.title1': 'What I build.',
     'cap.title2': 'What I solve.',
     'capabilities.stack.title': 'Full-stack web apps',
-    'capabilities.stack.desc': 'End-to-end web applications in Python, JavaScript and PHP, from database schema all the way to the deployed UI.',
+    'capabilities.stack.desc': 'End-to-end web applications in Python and TypeScript, from database schema all the way to the deployed UI.',
     'capabilities.api.title': 'REST APIs & webhooks',
     'capabilities.api.desc': 'Design and build HTTP APIs, JSON payloads, webhook integrations and external system plumbing.',
     'capabilities.ai.title': 'AI automation & LLMs',
@@ -125,11 +124,9 @@ const t = {
     'stack.label': 'Stack',
     'stack.title1': 'The tools I use',
     'stack.title2': 'to ship.',
-    'stack.cat.ai': 'AI & Automation',
     'stack.cat.lang': 'Languages',
-    'stack.cat.backend': 'Backend & APIs',
-    'stack.cat.frontend': 'Frontend',
-    'stack.cat.tools': 'DevOps & Tools',
+    'stack.cat.backend': 'Backend & Data',
+    'stack.cat.frontend': 'Frontend & Tools',
     'work.label': 'Selected work',
     'work.title1': "Things I've",
     'work.title2': 'actually shipped.',
@@ -178,7 +175,7 @@ const t = {
     'cap.title1': 'Was ich baue.',
     'cap.title2': 'Was ich löse.',
     'capabilities.stack.title': 'Full-Stack-Webapps',
-    'capabilities.stack.desc': 'End-to-End-Webanwendungen in Python, JavaScript und PHP, vom Datenbankschema bis zum deployten UI.',
+    'capabilities.stack.desc': 'End-to-End-Webanwendungen in Python und TypeScript, vom Datenbankschema bis zum deployten UI.',
     'capabilities.api.title': 'REST-APIs & Webhooks',
     'capabilities.api.desc': 'Design und Bau von HTTP-APIs, JSON-Payloads, Webhook-Integrationen und Anbindung externer Systeme.',
     'capabilities.ai.title': 'AI-Automation & LLMs',
@@ -192,11 +189,9 @@ const t = {
     'stack.label': 'Stack',
     'stack.title1': 'Die Tools mit denen',
     'stack.title2': 'ich liefere.',
-    'stack.cat.ai': 'AI & Automation',
     'stack.cat.lang': 'Sprachen',
-    'stack.cat.backend': 'Backend & APIs',
-    'stack.cat.frontend': 'Frontend',
-    'stack.cat.tools': 'DevOps & Tools',
+    'stack.cat.backend': 'Backend & Daten',
+    'stack.cat.frontend': 'Frontend & Werkzeuge',
     'work.label': 'Ausgewählte Arbeit',
     'work.title1': 'Sachen die',
     'work.title2': 'wirklich laufen.',
@@ -223,7 +218,7 @@ const t = {
 
 <Layout
   title="Mark Amaechi · Software Developer & AI Automation Specialist"
-  description="Software Developer & AI Automation Specialist based in Düsseldorf. Python, JavaScript, PHP, C++, REST APIs, AI integration. Available for hire."
+  description="Software developer based in Düsseldorf. Python, TypeScript, C++, REST APIs, AI integration. Available for hire."
 >
 
   <!-- ═══ CANVAS BACKGROUND ═══ -->
@@ -277,9 +272,9 @@ const t = {
           <div class="reveal mb-10 font-mono text-sm text-ink-400 flex flex-wrap gap-x-1 gap-y-1" style="transition-delay: 220ms">
             <span class="text-accent-cyan">Python</span>
             <span class="text-ink-600">·</span>
-            <span>JavaScript</span>
+            <span>TypeScript</span>
             <span class="text-ink-600">·</span>
-            <span>PHP</span>
+            <span>JavaScript</span>
             <span class="text-ink-600">·</span>
             <span>C++</span>
             <span class="text-ink-600">·</span>
