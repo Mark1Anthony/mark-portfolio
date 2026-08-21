@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Picture } from 'astro:assets';
+import markPhoto from '../assets/mark.jpg';
 
 const projects = [
   {
@@ -285,7 +287,17 @@ const t = {
             <div class="absolute -inset-2 bg-gradient-to-tr from-accent-violet to-accent-cyan rounded-[34px] opacity-80"></div>
             <!-- Photo -->
             <div class="relative rounded-[32px] overflow-hidden bg-ink-800 h-full shadow-2xl shadow-black/50">
-              <img src="/mark-portfolio/images/mark.png" alt="Mark Amaechi" class="w-full h-full object-cover" />
+              <Picture
+                src={markPhoto}
+                formats={['avif', 'webp']}
+                fallbackFormat="jpeg"
+                widths={[420, 840]}
+                sizes="(max-width: 1024px) 90vw, 420px"
+                alt="Mark Amaechi"
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-cover"
+              />
               <!-- Gradient overlay -->
               <div class="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"></div>
               <!-- Corner badges -->
