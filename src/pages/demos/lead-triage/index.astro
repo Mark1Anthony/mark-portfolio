@@ -195,7 +195,7 @@ const cols = ['hot', 'warm', 'cold'];
     const CATEGORIES = ['SaaS','Agency','E-commerce','FinTech','Health','Manufacturing','Media','Retail','Consulting','Tech'];
 
     function hasHotSignal(text: string): boolean {
-      const tokens = text.toLowerCase().match(/[a-z0-9]+/g) || [];
+      const tokens: string[] = text.toLowerCase().match(/[a-z0-9]+/g) ?? [];
       const set = new Set(tokens);
       for (const k of HOT_KEYWORDS) {
         if (k.includes(' ')) {
@@ -203,8 +203,9 @@ const cols = ['hot', 'warm', 'cold'];
           continue;
         }
         if (!set.has(k)) continue;
-        const idx = tokens.indexOf(k);
-        if (idx > 0 && NEGATIONS.includes(tokens[idx - 1])) continue;
+        // Jedes Vorkommen pruefen, nicht nur das erste - wie in triage.py.
+        const clean = tokens.some((tok, i) => tok === k && !(i > 0 && NEGATIONS.includes(tokens[i - 1])));
+        if (!clean) continue;
         return true;
       }
       return false;

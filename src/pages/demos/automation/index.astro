@@ -235,14 +235,16 @@ import Layout from '../../../layouts/Layout.astro';
       const text = (company + ' ' + msg).toLowerCase();
       const HOT = ['urgent','asap','deadline','budget','ready','contract','next week','next month','tomorrow','this week','approved','sign'];
       const NEGS = ['not','no','never','without'];
-      const tokens = text.match(/[a-z0-9]+/g) || [];
+      const tokens: string[] = text.match(/[a-z0-9]+/g) ?? [];
       const set = new Set(tokens);
       let hot = false;
       for (const k of HOT) {
         if (k.includes(' ')) { if (text.includes(k)) { hot = true; break; } continue; }
         if (!set.has(k)) continue;
-        const i = tokens.indexOf(k);
-        if (i > 0 && NEGS.includes(tokens[i - 1])) continue;
+        // Jedes Vorkommen pruefen, nicht nur das erste: "kein Budget letztes
+        // Jahr, aber Budget ist freigegeben" ist ein Kaufsignal.
+        const clean = tokens.some((tok, i) => tok === k && !(i > 0 && NEGS.includes(tokens[i - 1])));
+        if (!clean) continue;
         hot = true; break;
       }
       if (hot) return { priority: 'HOT', label: 'Hot lead — act today' };
