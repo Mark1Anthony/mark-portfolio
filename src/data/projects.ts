@@ -13,7 +13,7 @@ export const projects = [
     title: 'Lead Triage',
     subtitleKey: 'proj.leadtriage.sub',
     descriptionKey: 'proj.leadtriage.desc',
-    tags: ['Python', 'FastAPI', 'OpenAI API', 'SQLite', 'Webhooks'],
+    tags: ['Python', 'FastAPI', 'OpenAI API', 'Postgres', 'Docker', 'Webhooks'],
     image: 'leadtriage',
     liveUrl: '/mark-portfolio/demos/leadtriage/',
     codeUrl: 'https://github.com/Mark1Anthony/lead-triage',

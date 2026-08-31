@@ -94,7 +94,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Python</span><span class="text-ink-300" data-i18n="tech_python">Clean, readable backend logic. Easy to extend with new classification rules.</span></div>
           <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">FastAPI</span><span class="text-ink-300" data-i18n="tech_fastapi">Async REST API with automatic OpenAPI docs. Type hints throughout.</span></div>
           <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">OpenAI API</span><span class="text-ink-300" data-i18n="tech_openai">GPT-powered classification with structured output. Consistent priority scoring.</span></div>
-          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">SQLite</span><span class="text-ink-300" data-i18n="tech_sqlite">Lightweight storage for leads and classification history. Zero config needed.</span></div>
+          <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Postgres / SQLite</span><span class="text-ink-300" data-i18n="tech_sqlite">Postgres in the container and in production, SQLite when nothing is configured. One env var switches them.</span></div>
           <div class="flex gap-3"><span class="text-accent-cyan font-mono font-bold w-40 flex-shrink-0">Jinja2</span><span class="text-ink-300" data-i18n="tech_jinja">Server-rendered templates for the Kanban board and admin views.</span></div>
         </div>
       </div>
@@ -134,7 +134,7 @@ const t = {
     tech_python: 'Clean, readable backend logic. Easy to extend with new classification rules.',
     tech_fastapi: 'Async REST API with automatic OpenAPI docs. Type hints throughout.',
     tech_openai: 'GPT-powered classification with structured output. Consistent priority scoring.',
-    tech_sqlite: 'Lightweight storage for leads and classification history. Zero config needed.',
+    tech_sqlite: 'Postgres in the container and in production, SQLite when nothing is configured. One env var switches them.',
     tech_jinja: 'Server-rendered templates for the Kanban board and admin views.',
     cta_demo_bottom: 'Try the demo'
   },
@@ -160,7 +160,7 @@ const t = {
     tech_python: 'Saubere, lesbare Backend-Logik. Einfach erweiterbar mit neuen Klassifizierungsregeln.',
     tech_fastapi: 'Async REST API mit automatischer OpenAPI-Dokumentation. Type Hints durchgängig.',
     tech_openai: 'GPT-gestützte Klassifizierung mit strukturiertem Output. Konsistente Prioritätsbewertung.',
-    tech_sqlite: 'Leichtgewichtige Speicherung für Leads und Klassifizierungshistorie. Keine Konfiguration nötig.',
+    tech_sqlite: 'Postgres im Container und in Produktion, SQLite wenn nichts konfiguriert ist. Eine Umgebungsvariable schaltet um.',
     tech_jinja: 'Server-gerenderte Templates für das Kanban-Board und Admin-Ansichten.',
     cta_demo_bottom: 'Demo ausprobieren'
   }

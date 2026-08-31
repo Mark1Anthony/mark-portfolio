@@ -54,7 +54,7 @@ export const de = {
   'footer.copy': '© 2026 Mark Amaechi',
   'footer.note': 'Mit Sorgfalt gebaut.',
   'proj.leadtriage.sub': 'KI-gestützte Lead-Qualifizierung',
-  'proj.leadtriage.desc': 'Produktives Lead-Intake-System: Leads kommen per Formular oder Webhook rein, GPT klassifiziert sie nach Priorität und Kategorie, schlägt die nächste Aktion vor und pusht sie in ein Kanban. FastAPI + OpenAI + SQLite. Demo-Mode läuft ohne API-Key.',
+  'proj.leadtriage.desc': 'Produktives Lead-Intake-System: Leads kommen per Formular oder Webhook rein, GPT klassifiziert sie nach Priorität und Kategorie, schlägt die nächste Aktion vor und pusht sie in ein Kanban. FastAPI + OpenAI, Postgres im Container und im Deployment, SQLite ohne Konfiguration. Demo-Mode läuft ohne API-Key.',
   'proj.showcase.sub': '7 Websites + Automatisierung + Sales Funnel',
   'proj.showcase.desc': 'Ein Kunden-Showcase mit sechs Branchen-Websites, einer interaktiven AI Automations-Demo und einem vollständigen Sales Funnel mit Bedarfsanalyse, Upsells und Checkout. Gebaut, um nicht-technischen Kunden zu zeigen, was moderne Web-Automatisierung kann.',
   'proj.crm.sub': 'Full-Stack CRM mit echtem Auth und Datenbank',

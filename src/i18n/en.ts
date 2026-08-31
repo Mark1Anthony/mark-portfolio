@@ -55,7 +55,7 @@ export const en = {
   'footer.note': 'Crafted with care.',
   // Projects
   'proj.leadtriage.sub': 'AI-powered lead qualification',
-  'proj.leadtriage.desc': "Production-style lead intake system: leads come in via form or webhook, GPT classifies them by priority and category, suggests the next action, and pushes them into a kanban. FastAPI + OpenAI + SQLite. Demo mode runs without an API key.",
+  'proj.leadtriage.desc': "Production-style lead intake system: leads come in via form or webhook, GPT classifies them by priority and category, suggests the next action, and pushes them into a kanban. FastAPI + OpenAI, Postgres in the container and in deployment, SQLite with no configuration. Demo mode runs without an API key.",
   'proj.showcase.sub': '7 websites + automation + sales funnel',
   'proj.showcase.desc': 'A client-facing showcase with six industry websites, an interactive AI automation demo and a full sales funnel with needs quiz, upsells and checkout. Built to show non-technical clients what modern web automation looks like.',
   'proj.crm.sub': 'Full-stack CRM with real auth and database',
