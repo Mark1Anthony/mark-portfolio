@@ -15,7 +15,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "autoprefixer": "^10.4.27",
-    "tailwindcss": "^3.4.19",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   }
 }
